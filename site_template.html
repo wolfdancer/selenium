@@ -1,13 +1,13 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:template="http://buildmaster.rubyforge.org/xtemplate/1.0">
   <head>
-    <title>COTTA - <template:include elements="/html/head/title/text()"/></title>
+    <title>Selenium Ruby - <template:include elements="/html/head/title/text()"/></title>
     <link rel="stylesheet" type="text/css"><template:href url="cotta.css"/></link>
     <template:include elements="/html/head/*[not(name()='title')]"/>
   </head>
 
   <body>
-		<div class="header"><a class="header"><template:href url="."/><img id="logo" alt="cotta"><template:href url="cotta.gif"/></img></a></div>
+		<div class="header"><a class="header"><template:href url="."/><img id="logo" alt="cotta"><template:href url="logo1.gif"/></img></a></div>
 
 		<div class="left">
       <div class="MenuGroup">
@@ -43,9 +43,10 @@
           <li><a href="http://sourceforge.net/project/memberlist.php?group_id=171037">Development Team</a></li>
         </ul>
       </div>
-
-      <div class="">
-        <a><template:href url="http://sourceforge.net/projects/cotta/"/><img src="http://sflogo.sourceforge.net/sflogo.php?group_id=171037&amp;type=2" width="125" height="37" border="0" alt="SourceForge.net Logo" /></a>
+      <div class="logo">
+        <a href="http://rubyforge.org/projects/selenium/">
+        	<img alt="Rubyforge Logo" src="http://rubyforge.org/themes/osx/images/logohover.png" width="170"/>
+        </a>
       </div>
 		</div>
 
@@ -67,7 +68,7 @@
               <td><a><template:href url="download.html#snapshot"/><template:text property="snapshot"/></a></td>
             </tr>
           </table>
-          <p class="NewsMore"><a><template:href url="versioning.html"/>About cotta version numbers...</a></p>
+          <p class="NewsMore"><a><template:href url="http://rubygems.org/read/chapter/7"/>About gem version numbers...</a></p>
         </div>
         <div class="NewsGroup">
         	<h1>Recent News</h1>
@@ -93,24 +94,13 @@
       <div class="bottomshadow"/>
   		<div class="poweredby">
         Powered by <a href="http://buildmaster.rubyforge.org" class="footer">BuildMaster</a>
-        (Version <template:text property="buildmaster_version"/> Build <template:text property="buildmaster_buildnumber"/>)
+        (Version <template:text property="buildmaster_version"/>)
         -
         <a href="http://rubyforge.org/tracker/?group_id=1680" class="footer">Bug/feature request</a>
         -
         <a href="http://sourceforge.net/forum/forum.php?forum_id=585750" class="footer">Contact Administrators</a>
         <br/>
       </div>
-		</div>
-
-		<div> <script language="JavaScript" type="text/javascript"
-		    src="http://www.webpasties.com/pastie.php?mode=tracker&tid=2341&mid=44">
-		    </script></div>
-		<div><script src="http://www.google-analytics.com/urchin.js" type="text/javascript">
-</script>
-<script type="text/javascript">
-_uacct = "UA-735422-2";
-urchinTracker();
-</script>
 		</div>
 
   </body>
