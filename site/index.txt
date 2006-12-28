@@ -1,0 +1,9 @@
+-------------------------------
+Home
+-------------------------------
+h1. About Selenium Ruby
+Selenium Ruby is a ruby project that aim to make the popular "Selemium RC":http://www.openqa.org/selenium-rc/
+
+h1. Getting Started
+* "Download it":download.html
+* "Use it":getting-started:html

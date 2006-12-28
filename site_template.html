@@ -1,0 +1,117 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:template="http://buildmaster.rubyforge.org/xtemplate/1.0">
+  <head>
+    <title>COTTA - <template:include elements="/html/head/title/text()"/></title>
+    <link rel="stylesheet" type="text/css"><template:href url="cotta.css"/></link>
+    <template:include elements="/html/head/*[not(name()='title')]"/>
+  </head>
+
+  <body>
+		<div class="header"><a class="header"><template:href url="."/><img id="logo" alt="cotta"><template:href url="cotta.gif"/></img></a></div>
+
+		<div class="left">
+      <div class="MenuGroup">
+        <h1>Software</h1>
+        <ul>
+          <li><a><template:href url="download.html"/>Download</a></li>
+          <li><a href="http://sourceforge.net/svn/?group_id=171037">Source Repository</a></li>
+          <li><a><template:href url="license.html"/>Project License</a></li>
+        </ul>
+      </div>
+
+      <div class="MenuGroup">
+        <h1>Documentation</h1>
+        <ul>
+          <li><a><template:href url="getting-started.html"/>Getting Started</a></li>
+          <li><a><template:href url="document.html"/>Cotta Document</a></li>
+          <li><a><template:href url="references.html"/>References</a></li>
+        </ul>
+      </div>
+
+      <div class="MenuGroup">
+        <h1>User Support</h1>
+        <ul>
+          <li><a><template:href url="http://sourceforge.net/forum/?group_id=171037"/>Forum</a></li>
+          <li><a><template:href url="http://sourceforge.net/tracker/?group_id=171037&atid=856430"/>Bug Tracker</a></li>
+        </ul>
+      </div>
+
+      <div class="MenuGroup">
+        <h1>Development</h1>
+        <ul>
+          <li><a><template:href url="contribute.html"/>How to Contribute</a></li>
+          <li><a href="http://sourceforge.net/project/memberlist.php?group_id=171037">Development Team</a></li>
+        </ul>
+      </div>
+
+      <div class="">
+        <a><template:href url="http://sourceforge.net/projects/cotta/"/><img src="http://sflogo.sourceforge.net/sflogo.php?group_id=171037&amp;type=2" width="125" height="37" border="0" alt="SourceForge.net Logo" /></a>
+      </div>
+		</div>
+
+    <template:when test="index_file?">
+		<div class="right">
+        <div class="NewsGroup">
+          <h1>Latest Versions</h1>
+          <table>
+            <tr>
+              <td><a><template:href url="download.html#stable"/>Stable:</a></td>
+              <td><a><template:href url="download.html#stable"/><template:text property="release"/></a></td>
+            </tr>
+            <tr>
+              <td><a><template:href url="download.html#prerelease"/>Prerelease:</a></td>
+              <td><a><template:href url="download.html#prerelease"/><template:text property="prerelease"/></a></td>
+            </tr>
+            <tr>
+              <td><a><template:href url="download.html#snapshot"/>Snapshot:</a></td>
+              <td><a><template:href url="download.html#snapshot"/><template:text property="snapshot"/></a></td>
+            </tr>
+          </table>
+          <p class="NewsMore"><a><template:href url="versioning.html"/>About cotta version numbers...</a></p>
+        </div>
+        <div class="NewsGroup">
+        	<h1>Recent News</h1>
+				<template:each source="news-rss2.xml" select="/rss/channel/item" count="3">
+                <div class="NewsItem">
+                    <p class="NewsTitle"><template:include elements="./title/text()"/></p>
+                    <p class="NewsDate"><template:include elements="./pubDate/text()"/></p>
+                    <p class="NewsText"><template:include elements="./xhtml:div/node()"/></p>
+                </div>
+                </template:each>
+
+  			<p class="NewsMore"><a href="/news-rss2.xml">News feed (RSS 2.0)</a></p>
+				</div>
+		</div>
+		</template:when>
+
+		<div>
+		  <template:attribute name="class" eval="center_class"/>
+		  <div class="content"><template:include elements="/html/body/*"/></div>
+		</div>
+
+		<div class="footer">
+      <div class="bottomshadow"/>
+  		<div class="poweredby">
+        Powered by <a href="http://buildmaster.rubyforge.org" class="footer">BuildMaster</a>
+        (Version <template:text property="buildmaster_version"/> Build <template:text property="buildmaster_buildnumber"/>)
+        -
+        <a href="http://rubyforge.org/tracker/?group_id=1680" class="footer">Bug/feature request</a>
+        -
+        <a href="http://sourceforge.net/forum/forum.php?forum_id=585750" class="footer">Contact Administrators</a>
+        <br/>
+      </div>
+		</div>
+
+		<div> <script language="JavaScript" type="text/javascript"
+		    src="http://www.webpasties.com/pastie.php?mode=tracker&tid=2341&mid=44">
+		    </script></div>
+		<div><script src="http://www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-735422-2";
+urchinTracker();
+</script>
+		</div>
+
+  </body>
+</html>

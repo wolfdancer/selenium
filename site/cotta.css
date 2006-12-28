@@ -1,0 +1,354 @@
+body {
+    padding: 0px;
+    margin: 0px;
+    border: 0px;
+    font-family: helvetica, arial, sans-serif;
+    background-color: white;
+    color: black;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    margin: 0px;
+    border: 0px;
+    padding: 0px;
+    font-weight: normal;
+}
+
+a:link { color: #00a; }
+a:active { color: red; }
+a:hover { color: darkred; }
+a:visited { color: black; }
+
+#logo {
+    padding: 10px;
+}
+
+img {
+    border: 0px;
+    padding: 0px;
+    margin: 0px;
+}
+
+p {
+    border: 0px;
+    padding: 0px;
+    margin: 0px;
+    margin-bottom: 10px;
+}
+
+blockquote {
+    margin-bottom: 10px;
+}
+
+td {
+    padding: 2px;
+}
+
+th {
+    font-weight: bold;
+    white-space: nowrap;
+    padding: 2px;
+}
+
+th.Row {
+    text-align: left;
+    vertical-align: top;
+}
+
+ul, ol {
+    border: 0px;
+    padding: 0px;
+    margin-top: 0px;
+    margin-bottom: 12px;
+    margin-left: 20px;
+}
+
+div.header {
+	top: 0px;
+	left: 0px;
+	right: 0px;
+	width: 100%;
+	height: 86px;
+	margin: 0px;
+	border: 0px;
+	background-color: #EDE3D0;
+	border-bottom: 1px solid #825C47;
+	padding-left,padding-right,padding-top: 0px;
+	padding-bottom: 4px;
+}
+
+h1.header {
+  padding:0;
+  margin:0;
+}
+
+a.header { border: 0px; text-decoration: none;}
+a.header:visited { color: #00a; }
+a.header:hover { color: red; }
+a.header:active { color: red; }
+
+div.left {
+  float:left;
+  width:180px;
+	background-color: white;
+	padding: 8px;
+	font-size: small;
+	font-style: normal;
+	margin-top: 16px;
+}
+
+div.left h1{
+    margin: 0px;
+    border: 0px;
+    padding: 4px;
+    color: #894926;
+    font-size: small;
+    font-weight: bold;
+}
+
+div.MenuGroup a { text-decoration: none; }
+div.MenuGroup a:link { color: #894926; }
+div.MenuGroup a:visited { color: #894926; }
+div.MenuGroup a:active { color: red; }
+div.MenuGroup a:hover { color: white; background-color:#894926;width:160px;}
+
+/*---------------------------------------------------------------------------
+ *  Menus
+ */
+.MenuGroup {
+    border-left: 1px solid #825C47;
+    border-top: 1px solid #825C47;
+    border-bottom: 1px solid white; /* IE work-around */
+    
+    margin-bottom: 8px;
+    background-color: white;
+    color: #894926;
+}
+
+.MenuGroup ul {
+    margin: 0px;
+    padding-left: 4px;
+    list-style-type: none;
+}
+
+.MenuGroup li {
+    padding: 2px;
+}
+
+.More {
+		width: 100%;
+		text-align: right;
+}
+/*------------------------------------------------------------------------------*/
+
+/*-------------------------------------------------
+ * Right Panel
+ */
+div.right {
+  float:right;
+  width:184px;
+  margin:0;
+	background-color: white;
+	padding: 8px;
+	font-size: small;
+	font-style: normal;
+	margin-top: 16px;
+}
+
+div.right h1{
+    margin: 0px;
+    border: 0px;
+    padding: 4px;
+    color: #894926;
+    font-size: small;
+    font-weight: bold;
+}
+
+div.right a { text-decoration: none; }
+div.right a:link { color: #894926; }
+div.right a:visited { color: #894926; }
+div.right a:active { color: red; }
+div.right a:hover { color: red; }
+
+
+/*---------------------------------------------------------------------------
+ *  News panel
+ */
+.NewsGroup {
+    border-left: 1px solid #825C47;
+    border-top: 1px solid #825C47;
+    border-bottom: 1px solid white; /* IE workaround */
+    margin-bottom: 8px;
+    
+    color: #894926;
+}
+.NewsItem {
+    margin: 4px;
+}
+.NewsTitle {
+    font-weight: bold;
+    margin: 0px;
+    padding: 0px;
+}
+.NewsDate {
+    margin: 0px;
+    padding: 0px;
+    font-size: smaller;
+}
+.NewsText {
+    padding: 0px;
+    margin: 0px;
+    margin-bottom: 8px;
+}
+.NewsText a { text-decoration: underline; }
+.NewsText a:link { color: #894926; }
+.NewsText a:visited { color: #894926; }
+.NewsText a:active { color: red; }
+.NewsText a:hover { color: red; }
+.NewsMore {
+		font-size: small;
+		margin: 4px;
+		margin-top: 12px;
+		text-align: left;
+}
+.NewsGroup td {
+    font-size: 12px;
+}
+
+/*-------------------------------------------------------------------------*/
+
+/*---------------------------------------------------------------------------
+ *  Document meta-information
+ */
+
+.Meta {
+    margin-top: 64px;
+    font-size: smaller;
+    color: #C0C0C0;
+    text-align: right;
+}
+
+.Meta a { text-decoration: underline; }
+.Meta a:link { color: #C0C0C0; }
+.Meta a:visited { color: #C0C0C0; }
+.Meta a:active { color: red; }
+.Meta a:hover { color: red; }
+/*--------------------------------------------------------------------------*/
+
+div.Content3Column {
+  margin-left:200px;
+  margin-right:216px;
+}
+
+div.Content2Column {
+  margin-left:200px;
+  margin-right:16px;
+}
+
+div.content h1 {
+    width: 100%;
+    font-size: Larger;
+    background-color: #894926;
+    color: white;
+    padding: 2px;
+    padding-left: 6px;
+    margin-top: 24px;
+    margin-bottom: 12px;
+}
+
+div.content a { text-decoration: underline; }
+div.content a:link { color: #894926; }
+div.content a:visited { color: #894926; }
+div.content a:active { color: green; }
+div.content a:hover { color: red; }
+div.content h2 {
+    margin-top: 24px;
+    margin-bottom: 16px;    
+    font-weight: bold;
+    font-size: Larger;
+}
+
+div.content li {
+    margin-bottom: 6px;
+}
+div.content th {
+    background-color: #825C47;
+}
+div.content td {
+    background-color: #D7B19C;
+}
+
+div.Shaded pre {
+    padding: 4px;
+    font-family: courier new, monospace;
+    font-size: smaller;
+    border: 1px solid #008;
+    background-color: #E8A57F;
+    color: black;
+}
+
+div.Shaded:before {
+    margin: 0px;
+    padding: 0px;
+    border: 0px;
+    font-size: inherit;
+    line-spacing: 100%;
+}
+
+div.Code {
+  white-space: pre;
+  padding: 4px;
+  font-family: courier new, monospace;
+  font-size: smaller;
+  border: 1px solid #008;
+  background-color: #E8A57F;
+  color: black;
+}
+
+div.Code:before {
+    margin: 0px;
+    padding: 0px;
+    border: 0px;
+    font-size: inherit;
+}
+
+div.footer {
+  color: #894926;
+  padding:0.5em;
+  clear:both;
+  text-align:center;
+  font-size:75%;
+}
+
+div.footer a {
+  color:#894926;
+  font-size:inherit;
+}
+
+div.bottomshadow {
+  width=100%;
+  height: 12px;
+  background-image: url("/border_bottom.gif");
+  background-repeat: repeat-x;
+  padding: 12px;
+}
+
+div#content .Float {
+    float: right;
+    margin-left: 8px;
+    margin-right: 0px;
+    margin-top: 8px;
+    margin-bottom: 8px;
+}
+
+div#content .Diagram {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 8px;
+    margin-bottom: 8px;
+}
+
+div#content .Inline {
+    display: inline;
+}
