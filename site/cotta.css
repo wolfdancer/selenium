@@ -68,10 +68,10 @@ div.header {
 	left: 0px;
 	right: 0px;
 	width: 100%;
-	height: 86px;
+	height: 70px;
 	margin: 0px;
 	border: 0px;
-	background-color: #EDE3D0;
+	background-color: #CC9999;
 	border-bottom: 1px solid #825C47;
 	padding-left,padding-right,padding-top: 0px;
 	padding-bottom: 4px;
@@ -101,7 +101,7 @@ div.left h1{
     margin: 0px;
     border: 0px;
     padding: 4px;
-    color: #894926;
+    color: #663333;
     font-size: small;
     font-weight: bold;
 }
@@ -159,7 +159,7 @@ div.right h1{
     margin: 0px;
     border: 0px;
     padding: 4px;
-    color: #894926;
+    color: #663333;
     font-size: small;
     font-weight: bold;
 }
@@ -180,7 +180,7 @@ div.right a:hover { color: red; }
     border-bottom: 1px solid white; /* IE workaround */
     margin-bottom: 8px;
     
-    color: #894926;
+    color: #663333;
 }
 .NewsItem {
     margin: 4px;
@@ -248,7 +248,7 @@ div.Content2Column {
 div.content h1 {
     width: 100%;
     font-size: Larger;
-    background-color: #894926;
+    background-color: #663333;
     color: white;
     padding: 2px;
     padding-left: 6px;

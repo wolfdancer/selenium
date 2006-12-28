@@ -7,13 +7,16 @@ require 'buildmaster/project'
 require 'buildmaster/site'
 require 'buildmaster/cotta'
 
+VERSION_NUMBER = BuildMaster::VersionNumberFile.new(BuildMaster::Cotta.parent_of(__FILE__).file('lib/selenium/version'))
+
 SITE_SPEC = BuildMaster::SiteSpec.new(__FILE__) do |spec|
   spec.content_dir = 'site'
   spec.output_dir = 'build/website/selenium'
   spec.template_file = 'site_template.html'
+  spec.add_property('release', 'n/a')
+  spec.add_property('prerelease', 'n/a')
+  spec.add_property('snapshot', VERSION_NUMBER.version_number)
 end
-
-VERSION_NUMBER = BuildMaster::VersionNumberFile.new(BuildMaster::Cotta.parent_of(__FILE__).file('lib/selenium/version'))
 
 SPEC = Gem::Specification.new do |spec|
   spec.name = 'Selenium'
