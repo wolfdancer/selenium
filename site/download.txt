@@ -1,0 +1,8 @@
+---
+Download
+---
+h1. RubyGem
+
+The easiest way to install the published builds is using the following command through "RubyGem":http://rubygems.org/:
+
+<div class="code">gem install selenium</div>
