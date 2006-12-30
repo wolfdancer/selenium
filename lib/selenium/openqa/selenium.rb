@@ -159,7 +159,7 @@ module Selenium
                 response, result = http.get(command_string)
                 #print "RESULT: " + result + "\n\n"
                 if (result[0..1] != "OK")
-                    raise SeleniumCommandError, result
+                    raise SeleniumCommandError.new(command_string), result
                 end
                 return result
             end
@@ -1284,7 +1284,7 @@ module Selenium
         # 
         #
         # 'timeout' is a timeout in milliseconds, after which this command will return with an error
-        def wait_for_page_to_load(timeout)
+        def wait_for_page_to_load(timeout=@timeout)
             do_command("waitForPageToLoad", [timeout,])
         end
 
@@ -1322,6 +1322,13 @@ module Selenium
 end
 
 class SeleniumCommandError < RuntimeError 
+  def initialize(command_string)
+    @command_string = command_string
+  end
+  
+  def to_s
+    super + "(command=#{@command_string})"
+  end
 end
 
 # Defines a mixin module that you can use to write Selenium tests

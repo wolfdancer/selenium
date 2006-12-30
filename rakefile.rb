@@ -8,6 +8,8 @@ require 'rake/gempackagetask'
 require 'rake/rdoctask'
 require 'rcov/rcovtask'
 require 'specs'
+require 'buildmaster/project/server_manager'
+require 'lib/selenium'
 
 rcov_dir = SITE_SPEC.output_dir.dir('rcov')
 rspec_dir = SITE_SPEC.output_dir.dir('rspec')
@@ -50,8 +52,8 @@ end
 task :publish_site do
   svn = BuildMaster::SvnDriver.from_path(BuildMaster::Cotta.new.file(__FILE__).parent)
   output_dir = SITE.output_dir
-  raise 'output dir needs to be called the same as the project name for one copy action to work' unless output_dir.name == 'buildmaster'
-  BuildMaster::PscpDriver.new("#{svn.user}@buildmaster.rubyforge.org").copy(output_dir.path, '/var/www/gforge-projects')
+  raise 'output dir needs to be called the same as the project name for one copy action to work' unless output_dir.name == 'selenium'
+  BuildMaster::PscpDriver.new("#{svn.user}@selenium.rubyforge.org").copy(output_dir.path, '/var/www/gforge-projects')
 end
 
 task :test_site do
@@ -64,4 +66,9 @@ end
 
 task :setup_site do
   BuildMaster::Site.setup(SITE_SPEC)
+end
+
+task :selenium do
+  server = Selenium::SeleniumServer.new(BuildMaster::Cotta.new, 4444)
+  server.start
 end
