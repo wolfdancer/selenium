@@ -25,6 +25,8 @@ context 'basic operation with selenium' do
     page.home_link.click_wait
     page = DirectoryListingPage.new(@browser)
     page.link_to_entry('index.txt').click_wait
+    page = HomePage.new(@browser)
+    page.license_link.click_wait
 #TEST END
   end
 end

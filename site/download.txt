@@ -1,7 +1,7 @@
 ---
 Download
 ---
-h1. RubyGem
+h2. RubyGem
 
 The easiest way to install the published builds is using the following command through "RubyGem":http://rubygems.org/:
 

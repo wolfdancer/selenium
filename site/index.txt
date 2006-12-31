@@ -1,11 +1,13 @@
 -------------------------------
 Home
 -------------------------------
-h1. About Selenium Ruby
+Selenium Ruby is a ruby project that aim to make the popular "Selemium RC":http://www.openqa.org/selenium-rc/ available on rubyforge.
 
-Selenium Ruby is a ruby project that aim to make the popular "Selemium RC":http://www.openqa.org/selenium-rc/
+With Selenium Ruby:
+* You can install selenium gem available on rubyforge, which includes the selenium server and SeleniumDriver from Selenium RC project.
+* Selenium's action based API is wrapped into a object based API.  ("Object based web testing?":object-based-web-testing.html)
 
 h1. Getting Started
 
 * "Download it":download.html
-* "Use it":getting-started:html
+* "Use it":getting-started.html

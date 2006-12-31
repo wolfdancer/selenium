@@ -14,8 +14,8 @@
         <h1>Software</h1>
         <ul>
           <li><a><template:href url="download.html"/>Download</a></li>
-          <li><a href="http://sourceforge.net/svn/?group_id=171037">Source Repository</a></li>
-          <li><a><template:href url="license.html"/>Project License</a></li>
+          <li><a><template:attribute name="href" eval="source_url"/>Source Repository</a></li>
+          <li><a><template:href url="license.html"/>License</a></li>
         </ul>
       </div>
 
@@ -87,7 +87,10 @@
 
 		<div>
 		  <template:attribute name="class" eval="center_class"/>
-		  <div class="content"><template:include elements="/html/body/*"/></div>
+		  <div class="content">
+		  	<h1><template:include elements="/html/head/title/text()"/></h1>
+		  	<template:include elements="/html/body/*"/>
+		   </div>
 		</div>
 
 		<div class="footer">
