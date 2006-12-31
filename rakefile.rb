@@ -31,7 +31,7 @@ end
 
 Rake::RDocTask.new(:rdoc) do |rdoc|
   rdoc.main = "README"
-  rdoc.rdoc_files.include("README", "lib/**/*.rb").exclude("lib/buildmaster/site/templatelets/*.rb")
+  rdoc.rdoc_files.include("README", "lib/**/*.rb")
   rdoc.options << "--all"
   rdoc.rdoc_dir = SITE_SPEC.output_dir.dir('rdoc').path.to_s
 end
@@ -43,6 +43,12 @@ task :coverage => [:init]
 task :package do
   Gem::manage_gems
   Gem::Builder.new(SPEC).build
+end
+
+task :local_install do
+  gem_file = SPEC.full_name + ".gem"
+  puts "Insalling #{gem_file}..."
+  Gem::Installer.new(gem_file).install
 end
 
 task :build_site do

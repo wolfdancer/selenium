@@ -2,14 +2,25 @@ require 'net/http'
 
 module Selenium
 class SeleniumServer
-  def initialize(cotta, port_number = 4444)
-    @cotta = cotta
+  def SeleniumServer::run(argv)
+    jar_file = SeleniumServer.jar_file
+    command = "java -jar #{jar_file} #{argv.join(' ')}"
+    puts command
+    system(command)
+  end
+  
+  def SeleniumServer::jar_file
+    File.join(File.dirname(__FILE__), 'openqa', 'selenium-server.jar.txt')
+  end
+  
+  attr_reader :port_number
+
+  def initialize(port_number = 4444)
     @port_number = port_number
   end
   
   def start
-    jar = @cotta.file(__FILE__).parent.file('openqa/selenium-server.jar')
-    @cotta.shell("java -jar #{jar.path} -port #{@port_number}") {|io| puts io.gets}
+    SeleniumServer.run(['-port', port_number.to_s])
   end
   
   def stop

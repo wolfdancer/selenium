@@ -5,8 +5,14 @@ module Menu
     Link.by_id(browser, 'home')
   end
   
+#MENU START
   def download_link
     Link.by_text(browser, 'Download')
   end
+  
+  def license_link
+    Link.by_text(browser, 'License')
+  end
+#MENU END
 end
 end

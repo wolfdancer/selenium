@@ -1,0 +1,4 @@
+-------
+Getting Started
+-------
+Selenium-Ruby bundles the selenium server and Ruby classes in the gem so that you can use them right away.
