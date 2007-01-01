@@ -24,7 +24,7 @@ end
 
 SPEC = Gem::Specification.new do |spec|
   spec.name = 'Selenium'
-  spec.version = '0.0.0'
+  spec.version = VERSION_NUMBER.version_number
   spec.author = 'Shane Duan'
   spec.email = 'selenium@gmail.com'
   spec.homepage = 'http://selenium.rubyforge.org/'
