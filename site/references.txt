@@ -1,0 +1,5 @@
+---
+References
+---
+This page contains the useful references for anyone who wants to use Selenium with Ruby.  You can help making it better by
+"contributing to it":contribute.html.

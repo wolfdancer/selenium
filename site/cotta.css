@@ -283,7 +283,7 @@ div.Shaded pre {
     font-family: courier new, monospace;
     font-size: smaller;
     border: 1px solid #008;
-    background-color: #E8A57F;
+    background-color: #CCCC99;
     color: black;
 }
 
@@ -295,13 +295,22 @@ div.Shaded:before {
     line-spacing: 100%;
 }
 
+pre.code {
+  padding: 4px;
+  font-family: courier new, monospace;
+  font-size: smaller;
+  border: 1px solid #008;
+  background-color: #CCCC99;
+  color: black;
+}
+
 div.Code {
   white-space: pre;
   padding: 4px;
   font-family: courier new, monospace;
   font-size: smaller;
   border: 1px solid #008;
-  background-color: #E8A57F;
+  background-color: #CCCC99;
   color: black;
 }
 
