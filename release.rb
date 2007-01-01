@@ -2,6 +2,7 @@ $:.unshift File.dirname(__FILE__)
 
 require 'buildmaster/cotta'
 require 'buildmaster/project'
+require 'specs'
 
 root = BuildMaster::Cotta.file(__FILE__).parent
 svn = BuildMaster::SvnDriver.from_path(root)
