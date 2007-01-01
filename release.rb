@@ -23,7 +23,7 @@ end
 release.task("upload") do
   gem = "#{SPEC.name}-#{SPEC.version}"
   target_path = "/var/www/gforge-projects/selenium/builds/#{gem}.gem"
-  BuildMaster::PscpDriver.new("#{svn.user}@buildmaster.rubyforge.org").copy(root.file("#{gem}.gem").to_s, target_path)
+  BuildMaster::PscpDriver.new("#{svn.user}@selenium.rubyforge.org").copy(root.file("#{gem}.gem").to_s, target_path)
 end
 
 release.command(ARGV)
