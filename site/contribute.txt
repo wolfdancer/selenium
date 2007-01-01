@@ -1,3 +1,20 @@
 ---
 Contribute
 ---
+This project is created so that we can share our experiences using ruby and Selenium to test our web applications.
+You can start by joining the "selenium-ruby":http://groups.google.com/group/selenium-ruby google group.  This project
+will be constantly updated on the following area:
+
+h1. Testing API
+
+* Creating more wrapper classes that presents HTML elements with behaviors.
+* Re-design the API to leverage Ruby language and remove duplication
+
+h1. Testing Patterns
+
+* Share your experience of using Selenium with Ruby.  What is good, what is bad.
+* Share the patterns that you have built in your porject to make test easy and fun.
+
+h1. Write about it
+
+* Love it, hate it?  Write about it
