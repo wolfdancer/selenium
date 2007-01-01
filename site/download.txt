@@ -1,8 +1,17 @@
 ---
 Download
 ---
-h2. RubyGem
+h2. RubyGem <template:text property="release"/>
 
 The easiest way to install the published builds is using the following command through "RubyGem":http://rubygems.org/:
 
 <div class="code">gem install selenium</div>
+
+h2. RubyForge
+
+You can also download the files from "Rubyforge":http://rubyforge.org/frs/?group_id=2789
+
+h2. Snapshot <template:text property="snapshot"/>
+
+You can take the latest snapshot from the "build page":builds/
+

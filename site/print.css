@@ -1,0 +1,65 @@
+body {
+  font-family: Times, serif;
+  font-size: 12pt;
+  float: none !important;
+}
+
+div.header {
+  display: none;
+}
+
+div.left {
+  display:none;
+}
+
+div.bottomshadow {
+  display:none;
+}
+
+div.poweredby {
+  display: none;
+}
+
+div.source {
+  display: none;
+}
+
+div.right {
+  display:none;
+}
+
+div.content {
+  font-family: Times, serif;
+  font-size: 12pt;
+  width: 100%;
+}
+
+div.Content3Column {
+  width: 100%;
+  font-family: Times, serif;
+  font-size: 12pt;
+  margin-left: 0px;
+  margin-right: 0px;
+}
+
+div.Content2Column {
+  width: 100%;
+  font-family: Times, serif;
+  font-size: 12pt;
+  margin-left: 0px;
+  margin-right: 0px;
+}
+
+a:link, a:visited {
+	color: #520;
+	background: transparent;
+	font-weight: bold;
+	text-decoration: underline;
+	font-size: 12pt;
+	font-family: Times, serif;
+}
+
+#content a:link:after, #content a:visited:after {
+   content: " (" attr(href) ") ";
+   font-size: 90%;
+}

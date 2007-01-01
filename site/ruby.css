@@ -1,0 +1,14 @@
+pre.code span {
+  font-family: courier new, monospace;
+}
+
+span.keyword, .namespace, .tag { font-weight: bold; font-family: monospace; color: #8B0000;}
+.constant, .attribute, .global, .class, .module { font-family: monospace; color: black;}
+.string { font-family: monospace; color: #00008B; }
+.ident, .method { font-family: monospace; }
+.number, .char { font-family: monospace; color: #888800; }
+.comment { font-family: monospace; color: #006400; }
+.symbol { font-family: monospace; color: #884400; }
+.regex { font-family: monospace; color: #808080; }
+.punct { font-family: monospace; color: black; }
+.escape, .interp, .expr { font-family: monospace; color: purple; }

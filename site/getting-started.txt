@@ -2,3 +2,25 @@
 Getting Started
 -------
 Selenium-Ruby bundles the selenium server and Ruby classes in the gem so that you can use them right away.
+
+h1. Selenium Server
+
+Selenium-ruby installs the executable at the ruby/bin directory so you can launch the server through command:
+
+<div class="Shaded">
+<pre>selenium</pre>
+</div>
+
+h1. Selenium RC
+
+You can use Selenium RC that is installed as a gem, so that your existing action based web testing still works.  The following
+example is using "RSpec":http://rspec.rubyforge.org:
+
+<template:code source="selenium-rc-example.rb" tag="RC" syntax="ruby"/>
+
+h1. Selenium Ruby
+
+You can use classes that come with Selenium ruby to write object based web testing.  You can get the full content of this example here ("selenium-ruby-example.rb":selenium-ruby-example.rb)
+
+<template:code source="selenium-ruby-example.rb" tag="OBJECT" syntax="ruby"/>
+

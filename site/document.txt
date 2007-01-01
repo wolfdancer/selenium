@@ -1,0 +1,24 @@
+---
+Document
+---
+Please don't forget to check out the "getting started":getting-started.html page
+
+h1. Selenium Server
+
+Besides giving you the ability to launch Selenium server with "selenium" command, Selenium Ruby also provides a driver 
+class, "SeleniumDriver":rdoc/classes/Selenium/SeleniumServer.html, that allows you to start server, check if server is running,
+and stop server through ruby program.
+
+<template:code source="rakefile.rb" tag="RAKE" language="ruby"/>
+
+h1. Testing with Selenium
+
+h2. Action Based Testing
+
+This is provided by "Selenium":http://www.openqa.org/selenium-rc/ project itself.  The "SeleniumDriver":rdoc/classes/Selenium/SeleniumDriver.html is bundled
+with Selenium ruby gem.
+
+h2. Object Based Testing
+
+Selenium Ruby provides a set of commonly used classes like "Link":rdoc/classes/Selenium/Link.html, "Button":rdoc/classes/Selenium/Button.html and 
+"TextField":rdoc/classes/Selenium/TextField.html that can help you build an object model that present your web application.
