@@ -1,0 +1,60 @@
+---
+Domain Based Web Testing
+---
+Domain based web testing is a style of writing and organizing testing scripts so that they can:
+
+* Express the intent of the test.
+* Avoid duplication in the test.
+
+This is crucial especially for a large scale web application.
+
+h1. Example
+
+Domain based web testing focusing on the intent of the test rather than the action of the test.  
+
+h2. Watir Style
+
+The simplest domain based web testing wraps the browser object (the one that provides the API to drive the browser) into a page object that provides API that returns the HTML element object based on what you can do at the current page.  This is the style that "watir":http://wtr.rubyforge.org provides.  These HTML element object classes are simply wrappers that wraps the action command and delegate to the browser driver class as action based command.
+
+<template:code source="example.rb" tag="basic" syntax="ruby"/>
+
+h2. Page Object with Behaviors
+
+When the user comes to a page, they normally wants to do a certain task that involves a group of actions.  The page objects should provide those APIs so that the test is clear on what the test is doing rather than how it is doing it.
+
+<template:code source="example.rb" tag="login" syntax="ruby"/>
+
+h1. Benefit on Testing Quality
+
+Domain based web testing requires extra work to design and implement the page and HTML element objects.  However, experiences have shown that they pay off quickly.
+
+With the shared code, each tests only need to write the code that is special about the test.  This makes it easy to understand the tests and maintain them.  For example, with each page provide the way to locate the HTML elements on the page, it is easy to find the code and change it when the element id or name changes.
+
+The following are the patterns that have been proved to be useful.  Try them out and see if they are useful to your project as well.
+
+h2. Shared Steps
+
+You can wrap common steps into the behavior of the component (page or HTML element).  
+
+For example, you can create the @login@ method on the login page.  This method will enter the user name and password, click on the submit button and make sure that the login was successful.  You can even create different user on the fly and login as the user so that different tests will work on different sets of data and won't affect each other.
+
+h2. Widgets
+
+Some HTML element does form submission upon change automatically and some doesn't.  You can design your HTML element object so that it knows when the value changes, it needs to wait for the page load.
+
+Some HTML element has Javascript associated with it so that some other part of the page will change, even when there is no page load.  You can also design the element to wait for the condition.  For example, for a check box that shows and hides a comment filed, it can be designed as following:
+
+<template:code source="example.rb" tag="check" syntax="ruby"/>
+
+In this way, the test code will remain the same and all the work that making sure the test dose what it intends to do is encapsulated into the place where it should be.
+
+h2. Speed Up Data Setup
+
+It is always best to exercise the web application during the tests.  However, for a large application with lots of tests, it might not be feasible to run everything through browser.  You would still want each page to be fully tested but for some of the tests, it is a good idea to create the test data directly into the database.  This will speed up your tests and give you better test coverage.
+
+With the domain based web testing, your tests only concentrate on what kind of data to generate and delegate the generation detail to the page objects.  When performance becomes a concern for your tests, you can add additional behavior on those page objects so that for most of the test it delegates the data creation to a back-end API that inserts the data directly into the database.
+
+h1. Benefit on Communication
+
+With your domain based testing code expressing the intent of the test, you have created a "domain specific language" for testing of your web application.  It would not be hard to go from here and match that language to your domain language.  For detail on domain driven design, see "Domain Driven Design":http://domaindrivendesign.org/index.htm
+
