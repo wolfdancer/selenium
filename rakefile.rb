@@ -21,7 +21,7 @@ end
 
 #desc "Run all specifications"
 Spec::Rake::SpecTask.new(:coverage) do |t|
-  t.spec_files = FileList['test/**/tc_*.rb']
+  t.spec_files = FileList['spec/**/tc_*.rb']
   t.rcov = true
   t.rcov_dir = rcov_dir.path
   t.spec_opts = ["--format", "html", "--diff"]
