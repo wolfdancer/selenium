@@ -15,7 +15,7 @@ SITE_SPEC = BuildMaster::SiteSpec.new(__FILE__) do |spec|
   spec.content_dir = 'site'
   spec.output_dir = 'build/website/selenium'
   spec.template_file = 'site_template.html'
-  spec.add_property('release', 'n/a')
+  spec.add_property('release', '1.0.0')
   spec.add_property('prerelease', 'n/a')
   spec.add_property('snapshot', VERSION_NUMBER.version_number)
   spec.add_property('source_url', PROJECT.source_repository)
@@ -30,7 +30,7 @@ SPEC = Gem::Specification.new do |spec|
   spec.homepage = 'http://selenium.rubyforge.org/'
   spec.platform = Gem::Platform::RUBY
   spec.summary = 'A project that wraps selenium API into object-oriented testing style and packages it into a RubyGem.'
-  spec.files = FileList["{bin,docs,lib,test}/**/*"].exclude("rdoc").to_a
+  spec.files = FileList["{bin,docs,lib,spec}/**/*"].exclude("rdoc").to_a
   spec.require_path = 'lib'
   spec.autorequire = 'selenium'
   spec.has_rdoc = true

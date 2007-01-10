@@ -6,7 +6,9 @@ require 'lib/selenium'
 
 class GoogleHomPage
   include Selenium::Locator
+  include Selenium::BrowserAttributes
   attr_reader :browser
+  attr_text_field.by_name :search_field, 'q'
   def initialize(browser)
     @browser = browser
   end
