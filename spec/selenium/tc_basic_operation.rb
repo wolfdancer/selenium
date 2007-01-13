@@ -9,11 +9,11 @@ require 'spec/selenium/download_page'
 module Selenium
 context 'basic operation with selenium' do
   context_setup do
-    @browser = Selenium::SeleniumDriver.new("localhost", 4444, "*iexplore", "http://localhost:2000", 10000)
-    @browser.start
   end
   
   setup do
+    @browser = Selenium::SeleniumDriver.new("localhost", 4444, "*iexplore", "http://localhost:2000", 10000)
+    @browser.start
     @browser.open('http://localhost:2000/index.html')
   end
   
