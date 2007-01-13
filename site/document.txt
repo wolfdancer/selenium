@@ -9,7 +9,7 @@ Besides giving you the ability to launch Selenium server with "selenium" command
 class, "SeleniumDriver":rdoc/classes/Selenium/SeleniumServer.html, that allows you to start server, check if server is running,
 and stop server through ruby program.
 
-<template:code source="rakefile.rb" tag="RAKE" language="ruby"/>
+<template:code source="rakefile.rb" tag="RAKE" syntax="ruby"/>
 
 h1. Testing with Selenium
 

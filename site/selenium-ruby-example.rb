@@ -6,12 +6,11 @@ require 'lib/selenium'
 
 class GoogleHomPage
   include Selenium::Locator
-  include Selenium::BrowserAttributes
   attr_reader :browser
-  attr_text_field.by_name :search_field, 'q'
+
   def initialize(browser)
     @browser = browser
-  end
+    end
   
   def title
     browser.get_title
@@ -28,7 +27,7 @@ class GoogleHomPage
 end
 context 'Test goole seart' do
   setup do
-    @sel = Selenium::SeleniumDriver.new("localhost", 4444, "*iexplore", "http://www.google.com", 15000)
+    @sel = Selenium::SeleniumDriver.new("localhost", 4444, "*firefox", "http://www.google.com", 15000)
     @sel.start
   end
 		
