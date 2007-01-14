@@ -15,7 +15,7 @@ SITE_SPEC = BuildMaster::SiteSpec.new(__FILE__) do |spec|
   spec.content_dir = 'site'
   spec.output_dir = 'build/website/selenium'
   spec.template_file = 'site_template.html'
-  spec.add_property('release', '1.0.0')
+  spec.add_property('release', '1.0.1')
   spec.add_property('prerelease', 'n/a')
   spec.add_property('snapshot', VERSION_NUMBER.version_number)
   spec.add_property('source_url', PROJECT.source_repository)
