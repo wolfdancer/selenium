@@ -1,13 +1,11 @@
 $:.unshift File.dirname(__FILE__)
 require 'menu'
+require 'web_page'
 
 module Selenium
-class DownloadPage
-  include Menu
-  attr_reader :browser
-  
+class DownloadPage < SeleniumRubyPage
   def initialize(browser)
-    @browser = browser
+    super(browser, 'Selenium Ruby - Download')
   end
 end  
 end

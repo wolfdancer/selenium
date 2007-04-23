@@ -12,5 +12,9 @@ class DirectoryListingPage
   def link_to_entry(text)
     Link.new(browser, "link=#{text}")
   end
+
+  def assert_page
+    @browser.get_title.should == 'Index of /'
+  end
 end
 end

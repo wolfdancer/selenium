@@ -45,9 +45,10 @@ td {
 }
 
 th {
-    font-weight: bold;
+    font-weight: normal;
     white-space: nowrap;
     padding: 2px;
+    color: white;
 }
 
 th.Row {
@@ -73,7 +74,9 @@ div.header {
 	border: 0px;
 	background-color: #CC9999;
 	border-bottom: 1px solid #825C47;
-	padding-left,padding-right,padding-top: 0px;
+	padding-left: 0px;
+  padding-right: 0px;
+  padding-top: 0px;
 	padding-bottom: 4px;
 }
 
@@ -273,6 +276,7 @@ div.content li {
 }
 div.content th {
     background-color: #825C47;
+    color: white;
 }
 div.content td {
     background-color: #D7B19C;
@@ -292,7 +296,7 @@ div.Shaded:before {
     padding: 0px;
     border: 0px;
     font-size: inherit;
-    line-spacing: 100%;
+    /*line-spacing: 100%;*/
 }
 
 pre.code {
@@ -335,7 +339,7 @@ div.footer a {
 }
 
 div.bottomshadow {
-  width=100%;
+  width:100%;
   height: 12px;
   background-image: url("/border_bottom.gif");
   background-repeat: repeat-x;
