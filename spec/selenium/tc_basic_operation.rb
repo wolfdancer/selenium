@@ -20,13 +20,13 @@ context 'basic operation with selenium' do
   specify 'click through menus' do
 #TEST START
     page = HomePage.new(@browser)
-    page.download_link.click_wait
+    page.menu.download_link.click_wait
     page = DownloadPage.new(@browser)
-    page.home_link.click_wait
-    page = DirectoryListingPage.new(@browser)
+    page.assert_page
+    page = page.menu.home_link.go
     page.link_to_entry('index.txt').click_wait
     page = HomePage.new(@browser)
-    page.license_link.click_wait
+    page.menu.license_link.go
 #TEST END
   end
 end

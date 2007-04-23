@@ -15,3 +15,7 @@ h2. Snapshot <template:text property="snapshot"/>
 
 You can take the latest snapshot from the "build page":builds/
 
+h1. Textmate Bundle
+
+You can download textmate bundle for Selenium driver from "Project Files":http://rubyforge.org/frs/?group_id=2789&release_id=9004
+
