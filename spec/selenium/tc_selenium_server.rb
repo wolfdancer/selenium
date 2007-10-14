@@ -7,8 +7,8 @@ $:.unshift File.join(File.dirname(__FILE__), '..', '..', 'lib', 'selenium')
 require 'selenium_server'
 
 module Selenium
-context 'selenium server' do
-  specify 'start and stop server' do
+describe 'selenium server' do
+  it 'start and stop server' do
     server = BuildMaster::ServerManager.new(SeleniumServer.new(4321))
     puts 'starting server...'
     server.start

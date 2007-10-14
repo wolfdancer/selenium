@@ -31,55 +31,54 @@ require 'cgi'
 # <em>locatorType</em><b>=</b><em>argument</em>
 # We support the following strategies for locating elements:
 # 
-# *    <b>identifier</b>=<em>id</em>::
-#     Select the element with the specified @id attribute. If no match is
-#     found, select the first element whose @name attribute is <em>id</em>.
-#     (This is normally the default; see below.)
-# *    <b>id</b>=<em>id</em>::
-#     Select the element with the specified @id attribute.
-# *    <b>name</b>=<em>name</em>::
-#     Select the first element with the specified @name attribute.
+# *    <b>identifier</b>=<em>id</em>: 
+# Select the element with the specified @id attribute. If no match is
+# found, select the first element whose @name attribute is <em>id</em>.
+# (This is normally the default; see below.)
+# *    <b>id</b>=<em>id</em>:
+# Select the element with the specified @id attribute.
+# *    <b>name</b>=<em>name</em>:
+# Select the first element with the specified @name attribute.
+# *    username
+# *    name=username
 # 
-#     *    username
-#     *    name=username
-#     
-#     
+# The name may optionally be followed by one or more <em>element-filters</em>, separated from the name by whitespace.  If the <em>filterType</em> is not specified, <b>value</b> is assumed.
+# *    name=flavour value=chocolate
 # 
-#     The name may optionally be followed by one or more <em>element-filters</em>, separated from the name by whitespace.  If the <em>filterType</em> is not specified, <b>value</b> is assumed.
 # 
-#     *    name=flavour value=chocolate
-#     
-#     
-# *    <b>dom</b>=<em>javascriptExpression</em>::
-#     
-#         Find an element by evaluating the specified string.  This allows you to traverse the HTML Document Object
-#         Model using JavaScript.  Note that you must not return a value in this string; simply make it the last expression in the block.
-#         *    dom=document.forms['myForm'].myDropdown
-#         *    dom=document.images[56]
-#         *    dom=function foo() { return document.links[1]; }; foo();
-#         
-#         
-#     
-# *    <b>xpath</b>=<em>xpathExpression</em>::
-#     Locate an element using an XPath expression.
-#     *    xpath=//img[@alt='The image alt text']
-#     *    xpath=//table[@id='table1']//tr[4]/td[2]
-#     
-#     
-# *    <b>link</b>=<em>textPattern</em>::
-#     Select the link (anchor) element which contains text matching the
-#     specified <em>pattern</em>.
-#     *    link=The link text
-#     
-#     
-# *    <b>css</b>=<em>cssSelectorSyntax</em>::
-#     Select the element using css selectors. Please refer to CSS2 selectors, CSS3 selectors for more information. You can also check the TestCssLocators test in the selenium test suite for an example of usage, which is included in the downloaded selenium core package.
-#     *    css=a[href="#id3"]
-#     *    css=span#firstChild + span
-#     
-#     
+# *    <b>dom</b>=<em>javascriptExpression</em>: 
 # 
-#     Currently the css selector locator supports all css1, css2 and css3 selectors except namespace in css3, some pseudo classes(:nth-of-type, :nth-last-of-type, :first-of-type, :last-of-type, :only-of-type, :visited, :hover, :active, :focus, :indeterminate) and pseudo elements(::first-line, ::first-letter, ::selection, ::before, ::after). 
+# Find an element by evaluating the specified string.  This allows you to traverse the HTML Document Object
+# Model using JavaScript.  Note that you must not return a value in this string; simply make it the last expression in the block.
+# *    dom=document.forms['myForm'].myDropdown
+# *    dom=document.images[56]
+# *    dom=function foo() { return document.links[1]; }; foo();
+# 
+# 
+# *    <b>xpath</b>=<em>xpathExpression</em>: 
+# Locate an element using an XPath expression.
+# *    xpath=//img[@alt='The image alt text']
+# *    xpath=//table[@id='table1']//tr[4]/td[2]
+# *    xpath=//a[contains(@href,'#id1')]
+# *    xpath=//a[contains(@href,'#id1')]/@class
+# *    xpath=(//table[@class='stylee'])//th[text()='theHeaderText']/../td
+# *    xpath=//input[@name='name2' and @value='yes']
+# *    xpath=//*[text()="right"]
+# 
+# 
+# *    <b>link</b>=<em>textPattern</em>:
+# Select the link (anchor) element which contains text matching the
+# specified <em>pattern</em>.
+# *    link=The link text
+# 
+# 
+# *    <b>css</b>=<em>cssSelectorSyntax</em>:
+# Select the element using css selectors. Please refer to CSS2 selectors, CSS3 selectors for more information. You can also check the TestCssLocators test in the selenium test suite for an example of usage, which is included in the downloaded selenium core package.
+# *    css=a[href="#id3"]
+# *    css=span#firstChild + span
+# 
+# Currently the css selector locator supports all css1, css2 and css3 selectors except namespace in css3, some pseudo classes(:nth-of-type, :nth-last-of-type, :first-of-type, :last-of-type, :only-of-type, :visited, :hover, :active, :focus, :indeterminate) and pseudo elements(::first-line, ::first-letter, ::selection, ::before, ::after). 
+# 
 # 
 # 
 # Without an explicit locator prefix, Selenium uses the following default
@@ -99,18 +98,19 @@ require 'cgi'
 # Selects a single element based on its position in the list (offset from zero).===String-match Patterns
 # Various Pattern syntaxes are available for matching string values:
 # 
-# *    <b>glob:</b><em>pattern</em>::
-#     Match a string against a "glob" (aka "wildmat") pattern. "Glob" is a
-#     kind of limited regular-expression syntax typically used in command-line
-#     shells. In a glob pattern, "*" represents any sequence of characters, and "?"
-#     represents any single character. Glob patterns match against the entire
-#     string.
-# *    <b>regexp:</b><em>regexp</em>::
-#     Match a string using a regular-expression. The full power of JavaScript
-#     regular-expressions is available.
-# *    <b>exact:</b><em>string</em>::
-#     Match a string exactly, verbatim, without any of that fancy wildcard
-#     stuff.
+# *    <b>glob:</b><em>pattern</em>:
+# Match a string against a "glob" (aka "wildmat") pattern. "Glob" is a
+# kind of limited regular-expression syntax typically used in command-line
+# shells. In a glob pattern, "*" represents any sequence of characters, and "?"
+# represents any single character. Glob patterns match against the entire
+# string.
+# *    <b>regexp:</b><em>regexp</em>:
+# Match a string using a regular-expression. The full power of JavaScript
+# regular-expressions is available.
+# *    <b>exact:</b><em>string</em>:
+# 
+# Match a string exactly, verbatim, without any of that fancy wildcard
+# stuff.
 # 
 # 
 # If no pattern prefix is specified, Selenium assumes that it's a "glob"
@@ -156,12 +156,12 @@ module Selenium
                     command_string = command_string + "&sessionId=" + @session_id.to_s
                 end
                 #print "Requesting --->" + command_string + "\n"
-                response, result = http.get(command_string)
-                #print "RESULT: " + result + "\n\n"
-                if (result[0..1] != "OK")
-                    raise SeleniumCommandError.new(command_string), result
+                response = http.get(command_string)
+                #print "RESULT: " + response.body + "\n\n"
+                if (response.body[0..1] != "OK")
+                    raise SeleniumCommandError, response.body
                 end
-                return result
+                return response.body
             end
         end
         
@@ -393,8 +393,8 @@ module Selenium
         end
 
 
-        # Simulates a user pressing the mouse button (without releasing it yet) on
-        # the specified element.
+        # Simulates a user pressing the mouse button (without releasing it yet) at
+        # the specified location.
         #
         # 'locator' is an element locator
         # 'coordString' is specifies the x,y position (i.e. - 10,20) of the mouse      event relative to the element returned by the locator.
@@ -403,8 +403,8 @@ module Selenium
         end
 
 
-        # Simulates a user pressing the mouse button (without releasing it yet) on
-        # the specified element.
+        # Simulates the event that occurs when the user releases the mouse button (i.e., stops
+        # holding the button down) on the specified element.
         #
         # 'locator' is an element locator
         def mouse_up(locator)
@@ -412,8 +412,8 @@ module Selenium
         end
 
 
-        # Simulates a user pressing the mouse button (without releasing it yet) on
-        # the specified element.
+        # Simulates the event that occurs when the user releases the mouse button (i.e., stops
+        # holding the button down) at the specified location.
         #
         # 'locator' is an element locator
         # 'coordString' is specifies the x,y position (i.e. - 10,20) of the mouse      event relative to the element returned by the locator.
@@ -451,6 +451,25 @@ module Selenium
         # 'value' is the value to type
         def type(locator,value)
             do_command("type", [locator,value,])
+        end
+
+
+        # Simulates keystroke events on the specified element, as though you typed the value key-by-key.
+        # 
+        # This is a convenience method for calling keyDown, keyUp, keyPress for every character in the specified string;
+        # this is useful for dynamic UI widgets (like auto-completing combo boxes) that require explicit key events.
+        # Unlike the simple "type" command, which forces the specified value into the page directly, this command
+        # may or may not have any visible effect, even in cases where typing keys would normally have a visible effect.
+        # For example, if you use "typeKeys" on a form element, you may or may not see the results of what you typed in
+        # the field.
+        # In some cases, you may need to use the simple "type" command to set the value of the field and then the "typeKeys" command to
+        # send the keystroke events corresponding to what you just typed.
+        # 
+        #
+        # 'locator' is an element locator
+        # 'value' is the value to type
+        def type_keys(locator,value)
+            do_command("typeKeys", [locator,value,])
         end
 
 
@@ -497,27 +516,28 @@ module Selenium
         # that the selected option satisfies a specification). There are several
         # forms of Select Option Locator.
         # 
-        # *    <b>label</b>=<em>labelPattern</em>::
-        #     matches options based on their labels, i.e. the visible text. (This
-        #     is the default.)
-        #     *    label=regexp:^[Oo]ther
-        #     
-        #     
-        # *    <b>value</b>=<em>valuePattern</em>::
-        #     matches options based on their values.
-        #     *    value=other
-        #     
-        #     
-        # *    <b>id</b>=<em>id</em>::
-        #     matches options based on their ids.
-        #     *    id=option1
-        #     
-        #     
-        # *    <b>index</b>=<em>index</em>::
-        #     matches an option based on its index (offset from zero).
-        #     *    index=2
-        #     
-        #     
+        # *    <b>label</b>=<em>labelPattern</em>:
+        # matches options based on their labels, i.e. the visible text. (This
+        # is the default.)
+        # *    label=regexp:^[Oo]ther
+        # 
+        # 
+        # *    <b>value</b>=<em>valuePattern</em>:
+        # matches options based on their values.
+        # *    value=other
+        # 
+        # 
+        # *    <b>id</b>=<em>id</em>:
+        # 
+        # matches options based on their ids.
+        # *    id=option1
+        # 
+        # 
+        # *    <b>index</b>=<em>index</em>:
+        # matches an option based on its index (offset from zero).
+        # *    index=2
+        # 
+        # 
         # 
         # 
         # If no option locator prefix is provided, the default behaviour is to match on <b>label</b>.
@@ -550,6 +570,14 @@ module Selenium
         # 'optionLocator' is an option locator (a label by default)
         def remove_selection(locator,optionLocator)
             do_command("removeSelection", [locator,optionLocator,])
+        end
+
+
+        # Unselects all of the selected options in a multi-select element.
+        #
+        # 'locator' is an element locator identifying a multi-select box
+        def remove_all_selections(locator)
+            do_command("removeAllSelections", [locator,])
         end
 
 
@@ -599,13 +627,18 @@ module Selenium
         # commands go to that window. To select the main window again, use null
         # as the target.
         # 
+        # Note that there is a big difference between a window's internal JavaScript "name" property
+        # and the "title" of a given window's document (which is normally what you actually see, as an end user,
+        # in the title bar of the window).  The "name" is normally invisible to the end-user; it's the second 
+        # parameter "windowName" passed to the JavaScript method window.open(url, windowName, windowFeatures, replaceFlag)
+        # (which selenium intercepts).
         # Selenium has several strategies for finding the window object referred to by the "windowID" parameter.
-        # 1.) if windowID is null, then it is assumed the user is referring to the original window instantiated by the browser).
+        # 1.) if windowID is null, (or the string "null") then it is assumed the user is referring to the original window instantiated by the browser).
         # 2.) if the value of the "windowID" parameter is a JavaScript variable name in the current application window, then it is assumed
         # that this variable contains the return value from a call to the JavaScript window.open() method.
-        # 3.) Otherwise, selenium looks in a hash it maintains that maps string names to window objects.  Each of these string 
-        # names matches the second parameter "windowName" past to the JavaScript method  window.open(url, windowName, windowFeatures, replaceFlag)
-        # (which selenium intercepts).
+        # 3.) Otherwise, selenium looks in a hash it maintains that maps string names to window "names".
+        # 4.) If <em>that</em> fails, we'll try looping over all of the known windows to try to find the appropriate "title".
+        # Since "title" is not necessarily unique, this may have unexpected behavior.
         # If you're having trouble figuring out what is the name of a window that you want to manipulate, look at the selenium log messages
         # which identify the names of windows created via window.open (and therefore intercepted by selenium).  You will see messages
         # like the following for each window as it is opened:
@@ -624,6 +657,8 @@ module Selenium
         # Selects a frame within the current window.  (You may invoke this command
         # multiple times to select nested frames.)  To select the parent frame, use
         # "relative=parent" as a locator; to select the top frame, use "relative=top".
+        # You can also select a frame by its 0-based index number; select the first frame with
+        # "index=0", or the third frame with "index=2".
         # 
         # You may also use a DOM expression to identify the frame you want directly,
         # like this: <tt>dom=frames["main"].frames["subframe"]</tt>
@@ -632,22 +667,6 @@ module Selenium
         # 'locator' is an element locator identifying a frame or iframe
         def select_frame(locator)
             do_command("selectFrame", [locator,])
-        end
-
-
-        # Return the contents of the log.
-        # 
-        # This is a placeholder intended to make the code generator make this API
-        # available to clients.  The selenium server will intercept this call, however,
-        # and return its recordkeeping of log messages since the last call to this API.
-        # Thus this code in JavaScript will never be called.
-        # The reason I opted for a servercentric solution is to be able to support
-        # multiple frames served from different domains, which would break a
-        # centralized JavaScript logging mechanism under some conditions.
-        # 
-        #
-        def get_log_messages()
-            return get_string("getLogMessages", [])
         end
 
 
@@ -693,12 +712,29 @@ module Selenium
 
 
         # By default, Selenium's overridden window.confirm() function will
-        # return true, as if the user had manually clicked OK.  After running
+        # return true, as if the user had manually clicked OK; after running
         # this command, the next call to confirm() will return false, as if
-        # the user had clicked Cancel.
+        # the user had clicked Cancel.  Selenium will then resume using the
+        # default behavior for future confirmations, automatically returning 
+        # true (OK) unless/until you explicitly call this command for each
+        # confirmation.
         #
         def choose_cancel_on_next_confirmation()
             do_command("chooseCancelOnNextConfirmation", [])
+        end
+
+
+        # Undo the effect of calling chooseCancelOnNextConfirmation.  Note
+        # that Selenium's overridden window.confirm() function will normally automatically
+        # return true, as if the user had manually clicked OK, so you shouldn't
+        # need to use this command unless for some reason you need to change
+        # your mind prior to the next confirmation.  After any confirmation, Selenium will resume using the
+        # default behavior for future confirmations, automatically returning 
+        # true (OK) unless/until you explicitly call chooseCancelOnNextConfirmation for each
+        # confirmation.
+        #
+        def choose_ok_on_next_confirmation()
+            do_command("chooseOkOnNextConfirmation", [])
         end
 
 
@@ -872,16 +908,23 @@ module Selenium
         end
 
 
+        # Briefly changes the backgroundColor of the specified element yellow.  Useful for debugging.
+        #
+        # 'locator' is an element locator
+        def highlight(locator)
+            do_command("highlight", [locator,])
+        end
+
+
         # Gets the result of evaluating the specified JavaScript snippet.  The snippet may
         # have multiple lines, but only the result of the last line will be returned.
         # 
         # Note that, by default, the snippet will run in the context of the "selenium"
-        # object itself, so <tt>this</tt> will refer to the Selenium object, and <tt>window</tt> will
-        # refer to the top-level runner test window, not the window of your application.
-        # If you need a reference to the window of your application, you can refer
-        # to <tt>this.browserbot.getCurrentWindow()</tt> and if you need to use
+        # object itself, so <tt>this</tt> will refer to the Selenium object.  Use <tt>window</tt> to
+        # refer to the window of your application, e.g. <tt>window.document.getElementById('foo')</tt>
+        # If you need to use
         # a locator to refer to a single element in your application page, you can
-        # use <tt>this.page().findElement("foo")</tt> where "foo" is your locator.
+        # use <tt>this.browserbot.findElement("id=foo")</tt> where "id=foo" is your locator.
         # 
         #
         # 'script' is the JavaScript snippet to run
@@ -989,7 +1032,7 @@ module Selenium
 
         # Gets the value of an element attribute.
         #
-        # 'attributeLocator' is an element locator followed by an
+        # 'attributeLocator' is an element locator followed by an @ sign and then the name of the attribute, e.g. "foo@bar"
         def get_attribute(attributeLocator)
             return get_string("getAttribute", [attributeLocator,])
         end
@@ -1079,6 +1122,27 @@ module Selenium
         end
 
 
+        # Configure the number of pixels between "mousemove" events during dragAndDrop commands (default=10).
+        # Setting this value to 0 means that we'll send a "mousemove" event to every single pixel
+        # in between the start location and the end location; that can be very slow, and may
+        # cause some browsers to force the JavaScript to timeout.
+        # If the mouse speed is greater than the distance between the two dragged objects, we'll
+        # just send one "mousemove" at the start location and then one final one at the end location.
+        # 
+        #
+        # 'pixels' is the number of pixels between "mousemove" events
+        def set_mouse_speed(pixels)
+            do_command("setMouseSpeed", [pixels,])
+        end
+
+
+        # Returns the number of pixels between "mousemove" events during dragAndDrop commands (default=10).
+        #
+        def get_mouse_speed()
+            return get_number("getMouseSpeed", [])
+        end
+
+
         # Drags an element a certain distance and then drops it
         #
         # 'locator' is an element locator
@@ -1091,25 +1155,23 @@ module Selenium
         # Drags an element and drops it on another element
         #
         # 'locatorOfObjectToBeDragged' is an element to be dragged
-        # 'locatorOfDragDestinationObject' is an element whose location (i.e., whose top left corner) will be the point where locatorOfObjectToBeDragged  is dropped
+        # 'locatorOfDragDestinationObject' is an element whose location (i.e., whose center-most pixel) will be the point where locatorOfObjectToBeDragged  is dropped
         def drag_and_drop_to_object(locatorOfObjectToBeDragged,locatorOfDragDestinationObject)
             do_command("dragAndDropToObject", [locatorOfObjectToBeDragged,locatorOfDragDestinationObject,])
         end
 
 
-        # Gives focus to a window
+        # Gives focus to the currently selected window
         #
-        # 'windowName' is name of the window to be given focus
-        def window_focus(windowName)
-            do_command("windowFocus", [windowName,])
+        def window_focus()
+            do_command("windowFocus", [])
         end
 
 
-        # Resize window to take up the entire screen
+        # Resize currently selected window to take up the entire screen
         #
-        # 'windowName' is name of the window to be enlarged
-        def window_maximize(windowName)
-            do_command("windowMaximize", [windowName,])
+        def window_maximize()
+            do_command("windowMaximize", [])
         end
 
 
@@ -1161,7 +1223,7 @@ module Selenium
         end
 
 
-        # Check if these two elements have same parent and are ordered. Two same elements will
+        # Check if these two elements have same parent and are ordered siblings in the DOM. Two same elements will
         # not be considered ordered.
         #
         # 'locator1' is an element locator pointing to the first element
@@ -1216,22 +1278,6 @@ module Selenium
         end
 
 
-        # Writes a message to the status bar and adds a note to the browser-side
-        # log.
-        # 
-        # If logLevelThreshold is specified, set the threshold for logging
-        # to that level (debug, info, warn, error).
-        # (Note that the browser-side logs will <em>not</em> be sent back to the
-        # server, and are invisible to the Client Driver.)
-        # 
-        #
-        # 'context' is the message to be sent to the browser
-        # 'logLevelThreshold' is one of "debug", "info", "warn", "error", sets the threshold for browser-side logging
-        def set_context(context,logLevelThreshold)
-            do_command("setContext", [context,logLevelThreshold,])
-        end
-
-
         # Returns the specified expression.
         # 
         # This is useful because of JavaScript preprocessing.
@@ -1241,6 +1287,39 @@ module Selenium
         # 'expression' is the value to return
         def get_expression(expression)
             return get_string("getExpression", [expression,])
+        end
+
+
+        # Returns the number of nodes that match the specified xpath, eg. "//table" would give
+        # the number of tables.
+        #
+        # 'xpath' is the xpath expression to evaluate. do NOT wrap this expression in a 'count()' function; we will do that for you.
+        def get_xpath_count(xpath)
+            return get_number("getXpathCount", [xpath,])
+        end
+
+
+        # Temporarily sets the "id" attribute of the specified element, so you can locate it in the future
+        # using its ID rather than a slow/complicated XPath.  This ID will disappear once the page is
+        # reloaded.
+        #
+        # 'locator' is an element locator pointing to an element
+        # 'identifier' is a string to be used as the ID of the specified element
+        def assign_id(locator,identifier)
+            do_command("assignId", [locator,identifier,])
+        end
+
+
+        # Specifies whether Selenium should use the native in-browser implementation
+        # of XPath (if any native version is available); if you pass "false" to
+        # this function, we will always use our pure-JavaScript xpath library.
+        # Using the pure-JS xpath library can improve the consistency of xpath
+        # element locators between different browser vendors, but the pure-JS
+        # version is much slower than the native implementations.
+        #
+        # 'allow' is boolean, true means we'll prefer to use native XPath; false means we'll only use JS XPath
+        def allow_native_xpath(allow)
+            do_command("allowNativeXpath", [allow,])
         end
 
 
@@ -1284,8 +1363,23 @@ module Selenium
         # 
         #
         # 'timeout' is a timeout in milliseconds, after which this command will return with an error
-        def wait_for_page_to_load(timeout=@timeout)
+        def wait_for_page_to_load(timeout)
             do_command("waitForPageToLoad", [timeout,])
+        end
+
+
+        # Waits for a new frame to load.
+        # 
+        # Selenium constantly keeps track of new pages and frames loading, 
+        # and sets a "newPageLoaded" flag when it first notices a page load.
+        # 
+        # 
+        # See waitForPageToLoad for more information.
+        #
+        # 'frameAddress' is FrameAddress from the server side
+        # 'timeout' is a timeout in milliseconds, after which this command will return with an error
+        def wait_for_frame_to_load(frameAddress,timeout)
+            do_command("waitForFrameToLoad", [frameAddress,timeout,])
         end
 
 
@@ -1315,6 +1409,70 @@ module Selenium
         end
 
 
+        # Sets the threshold for browser-side logging messages; log messages beneath this threshold will be discarded.
+        # Valid logLevel strings are: "debug", "info", "warn", "error" or "off".
+        # To see the browser logs, you need to
+        # either show the log window in GUI mode, or enable browser-side logging in Selenium RC.
+        #
+        # 'logLevel' is one of the following: "debug", "info", "warn", "error" or "off"
+        def set_browser_log_level(logLevel)
+            do_command("setBrowserLogLevel", [logLevel,])
+        end
+
+
+        # Creates a new "script" tag in the body of the current test window, and 
+        # adds the specified text into the body of the command.  Scripts run in
+        # this way can often be debugged more easily than scripts executed using
+        # Selenium's "getEval" command.  Beware that JS exceptions thrown in these script
+        # tags aren't managed by Selenium, so you should probably wrap your script
+        # in try/catch blocks if there is any chance that the script will throw
+        # an exception.
+        #
+        # 'script' is the JavaScript snippet to run
+        def run_script(script)
+            do_command("runScript", [script,])
+        end
+
+
+        # Defines a new function for Selenium to locate elements on the page.
+        # For example,
+        # if you define the strategy "foo", and someone runs click("foo=blah"), we'll
+        # run your function, passing you the string "blah", and click on the element 
+        # that your function
+        # returns, or throw an "Element not found" error if your function returns null.
+        # 
+        # We'll pass three arguments to your function:
+        # *    locator: the string the user passed in
+        # *    inWindow: the currently selected window
+        # *    inDocument: the currently selected document
+        # 
+        # 
+        # The function must return null if the element can't be found.
+        #
+        # 'strategyName' is the name of the strategy to define; this should use only   letters [a-zA-Z] with no spaces or other punctuation.
+        # 'functionDefinition' is a string defining the body of a function in JavaScript.   For example: <tt>return inDocument.getElementById(locator);</tt>
+        def add_location_strategy(strategyName,functionDefinition)
+            do_command("addLocationStrategy", [strategyName,functionDefinition,])
+        end
+
+
+        # Writes a message to the status bar and adds a note to the browser-side
+        # log.
+        #
+        # 'context' is the message to be sent to the browser
+        def set_context(context)
+            do_command("setContext", [context,])
+        end
+
+
+        # Captures a PNG screenshot to the specified file.
+        #
+        # 'filename' is the absolute path to the file to be written, e.g. "c:\blah\screenshot.png"
+        def capture_screenshot(filename)
+            do_command("captureScreenshot", [filename,])
+        end
+
+
     end
 
     SeleneseInterpreter = SeleniumDriver # for backward compatibility
@@ -1322,13 +1480,6 @@ module Selenium
 end
 
 class SeleniumCommandError < RuntimeError 
-  def initialize(command_string)
-    @command_string = command_string
-  end
-  
-  def to_s
-    super + "(command=#{@command_string})"
-  end
 end
 
 # Defines a mixin module that you can use to write Selenium tests

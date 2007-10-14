@@ -34,7 +34,7 @@ module Selenium
     def go
       raise "target page not defined for link #{@locator}" unless @target
       click_wait
-      @target.assert_page
+      @target.assert_on_page
       @target
     end
   end
