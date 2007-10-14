@@ -13,6 +13,6 @@ module Selenium
     def title
       @browser.get_title
     end
-
+	
   end
 end

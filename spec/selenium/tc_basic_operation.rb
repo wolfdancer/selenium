@@ -7,17 +7,15 @@ require 'spec/selenium/home_page'
 require 'spec/selenium/download_page'
 
 module Selenium
-context 'basic operation with selenium' do
-  context_setup do
-  end
+describe 'basic operation with selenium' do
   
-  setup do
+  before do
     @browser = Selenium::SeleniumDriver.new("localhost", 4444, "*iexplore", "http://localhost:2000", 10000)
     @browser.start
     @browser.open('http://localhost:2000/index.html')
   end
   
-  specify 'click through menus' do
+  it 'click through menus' do
 #TEST START
     page = HomePage.new(@browser)
     page.menu.download_link.click_wait
