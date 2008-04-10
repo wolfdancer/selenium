@@ -46,9 +46,9 @@ class SeleniumServer
         http.request(request)
       }
       puts "response: #{res}"
-    rescue Errno::EBADF => e
+    rescue Errno::EBADF, Errno::ECONNREFUSED => e
       return false
-    end 
+    end
     return true      
   end
 end
