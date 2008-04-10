@@ -1,15 +1,13 @@
 require 'spec'
-require 'buildmaster/cotta'
-require 'buildmaster/project/server_manager'
 
-$:.unshift File.join(File.dirname(__FILE__), '..', '..', 'lib', 'selenium')
+$:.unshift File.join(File.dirname(__FILE__), '..', '..', 'lib')
 
-require 'selenium_server'
+require 'selenium'
 
 module Selenium
 describe 'selenium server' do
   it 'start and stop server' do
-    server = BuildMaster::ServerManager.new(SeleniumServer.new(4321))
+    server = ServerManager.new()
     puts 'starting server...'
     server.start
     puts 'stopping server...'
