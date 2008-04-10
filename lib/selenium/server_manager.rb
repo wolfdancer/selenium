@@ -18,8 +18,8 @@ class ServerManager
   # * stopping
   # * error
   attr_reader :status
-  
-  def initialize(server)
+
+  def initialize(server = SeleniumServer.new)
     @server = server
     @status = 'stopped'
   end
