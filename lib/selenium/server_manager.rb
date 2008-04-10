@@ -19,6 +19,10 @@ class ServerManager
   # * error
   attr_reader :status
 
+  def ServerManager::on_port(port)
+    ServerManager.new(SeleniumServer.new(port))
+  end
+
   def initialize(server = SeleniumServer.new)
     @server = server
     @status = 'stopped'
