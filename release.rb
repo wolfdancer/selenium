@@ -12,7 +12,7 @@ release.task('version') do
   VERSION_NUMBER.increase_build
   SPEC.version = VERSION_NUMBER.version_number
 end
-release.task("rake") {Rake::Application.new.run}
+release.task("rake") {load('rake')}
 release.task('commit') {svn.commit('committing before release')}
 release.task('tagging') do
   tag = "selenium-#{SPEC.version}"
