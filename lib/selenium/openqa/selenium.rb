@@ -131,7 +131,7 @@ module Selenium
 
     class SeleniumDriver
         include Selenium
-    
+
         def initialize(server_host, server_port, browserStartCommand, browserURL, timeout=30000)
             @server_host = server_host
             @server_port = server_port
@@ -1420,6 +1420,7 @@ module Selenium
         # 'timeout' is a timeout in milliseconds, after which the action will return with an error
         def set_timeout(timeout)
             do_command("setTimeout", [timeout,])
+            @timeout = timeout
         end
 
 
@@ -1434,7 +1435,7 @@ module Selenium
         # 
         #
         # 'timeout' is a timeout in milliseconds, after which this command will return with an error
-        def wait_for_page_to_load(timeout)
+        def wait_for_page_to_load(timeout=@timeout)
             do_command("waitForPageToLoad", [timeout,])
         end
 
