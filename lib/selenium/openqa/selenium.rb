@@ -107,6 +107,8 @@ require 'cgi'
 # *    <b>regexp:</b><em>regexp</em>:
 # Match a string using a regular-expression. The full power of JavaScript
 # regular-expressions is available.
+# *    <b>regexpi:</b><em>regexpi</em>:
+# Match a string using a case-insensitive regular-expression.
 # *    <b>exact:</b><em>string</em>:
 # 
 # Match a string exactly, verbatim, without any of that fancy wildcard
@@ -114,6 +116,14 @@ require 'cgi'
 # 
 # 
 # If no pattern prefix is specified, Selenium assumes that it's a "glob"
+# pattern.
+# 
+# 
+# For commands that return multiple values (such as verifySelectOptions),
+# the string being matched is a comma-separated list of the return values,
+# where both commas and backslashes in the values are backslash-escaped.
+# When providing a pattern, the optional matching syntax (i.e. glob,
+# regexp, etc.) is specified once, as usual, at the beginning of the
 # pattern.
 # 
 # 
@@ -147,6 +157,7 @@ module Selenium
         def do_command(verb, args)
             timeout(@timeout) do
                 http = Net::HTTP.new(@server_host, @server_port)
+                http.read_timeout = @timeout
                 command_string = '/selenium-server/driver/?cmd=' + CGI::escape(verb)
                 args.length.times do |i|
                     arg_num = (i+1).to_s
@@ -253,6 +264,14 @@ module Selenium
         end
 
 
+        # Simulates opening the context menu for the specified element (as might happen if the user "right-clicked" on the element).
+        #
+        # 'locator' is an element locator
+        def context_menu(locator)
+            do_command("contextMenu", [locator,])
+        end
+
+
         # Clicks on a link, button, checkbox or radio button. If the click action
         # causes a new page to load (like a link usually does), call
         # waitForPageToLoad.
@@ -275,6 +294,15 @@ module Selenium
         end
 
 
+        # Simulates opening the context menu for the specified element (as might happen if the user "right-clicked" on the element).
+        #
+        # 'locator' is an element locator
+        # 'coordString' is specifies the x,y position (i.e. - 10,20) of the mouse      event relative to the element returned by the locator.
+        def context_menu_at(locator,coordString)
+            do_command("contextMenuAt", [locator,coordString,])
+        end
+
+
         # Explicitly simulate an event, to trigger the corresponding "on<em>event</em>"
         # handler.
         #
@@ -282,6 +310,14 @@ module Selenium
         # 'eventName' is the event name, e.g. "focus" or "blur"
         def fire_event(locator,eventName)
             do_command("fireEvent", [locator,eventName,])
+        end
+
+
+        # Move the focus to the specified element; for example, if the element is an input field, move the cursor to that field.
+        #
+        # 'locator' is an element locator
+        def focus(locator)
+            do_command("focus", [locator,])
         end
 
 
@@ -488,7 +524,7 @@ module Selenium
         # See also setSpeed.
         #
         def get_speed()
-            do_command("getSpeed", [])
+            return get_string("getSpeed", [])
         end
 
 
@@ -623,24 +659,41 @@ module Selenium
         end
 
 
-        # Selects a popup window; once a popup window has been selected, all
+        # Selects a popup window using a window locator; once a popup window has been selected, all
         # commands go to that window. To select the main window again, use null
         # as the target.
         # 
-        # Note that there is a big difference between a window's internal JavaScript "name" property
-        # and the "title" of a given window's document (which is normally what you actually see, as an end user,
-        # in the title bar of the window).  The "name" is normally invisible to the end-user; it's the second 
+        # 
+        # 
+        # Window locators provide different ways of specifying the window object:
+        # by title, by internal JavaScript "name," or by JavaScript variable.
+        # 
+        # *    <b>title</b>=<em>My Special Window</em>:
+        # Finds the window using the text that appears in the title bar.  Be careful;
+        # two windows can share the same title.  If that happens, this locator will
+        # just pick one.
+        # 
+        # *    <b>name</b>=<em>myWindow</em>:
+        # Finds the window using its internal JavaScript "name" property.  This is the second 
         # parameter "windowName" passed to the JavaScript method window.open(url, windowName, windowFeatures, replaceFlag)
-        # (which selenium intercepts).
-        # Selenium has several strategies for finding the window object referred to by the "windowID" parameter.
+        # (which Selenium intercepts).
+        # 
+        # *    <b>var</b>=<em>variableName</em>:
+        # Some pop-up windows are unnamed (anonymous), but are associated with a JavaScript variable name in the current
+        # application window, e.g. "window.foo = window.open(url);".  In those cases, you can open the window using
+        # "var=foo".
+        # 
+        # 
+        # 
+        # If no window locator prefix is provided, we'll try to guess what you mean like this:
         # 1.) if windowID is null, (or the string "null") then it is assumed the user is referring to the original window instantiated by the browser).
         # 2.) if the value of the "windowID" parameter is a JavaScript variable name in the current application window, then it is assumed
         # that this variable contains the return value from a call to the JavaScript window.open() method.
         # 3.) Otherwise, selenium looks in a hash it maintains that maps string names to window "names".
         # 4.) If <em>that</em> fails, we'll try looping over all of the known windows to try to find the appropriate "title".
         # Since "title" is not necessarily unique, this may have unexpected behavior.
-        # If you're having trouble figuring out what is the name of a window that you want to manipulate, look at the selenium log messages
-        # which identify the names of windows created via window.open (and therefore intercepted by selenium).  You will see messages
+        # If you're having trouble figuring out the name of a window that you want to manipulate, look at the Selenium log messages
+        # which identify the names of windows created via window.open (and therefore intercepted by Selenium).  You will see messages
         # like the following for each window as it is opened:
         # <tt>debug: window.open call intercepted; window ID (which you can use with selectWindow()) is "myNewWindow"</tt>
         # In some cases, Selenium will be unable to intercept a call to window.open (if the call occurs during or before the "onLoad" event, for example).
@@ -704,7 +757,7 @@ module Selenium
 
         # Waits for a popup window to appear and load up.
         #
-        # 'windowID' is the JavaScript window ID of the window that will appear
+        # 'windowID' is the JavaScript window "name" of the window that will appear (not the text of the title bar)
         # 'timeout' is a timeout in milliseconds, after which the action will return with an error
         def wait_for_pop_up(windowID,timeout)
             do_command("waitForPopUp", [windowID,timeout,])
@@ -1030,7 +1083,9 @@ module Selenium
         end
 
 
-        # Gets the value of an element attribute.
+        # Gets the value of an element attribute. The value of the attribute may
+        # differ across browsers (this is the case for the "style" attribute, for
+        # example).
         #
         # 'attributeLocator' is an element locator followed by an @ sign and then the name of the attribute, e.g. "foo@bar"
         def get_attribute(attributeLocator)
@@ -1323,6 +1378,22 @@ module Selenium
         end
 
 
+        # Specifies whether Selenium will ignore xpath attributes that have no
+        # value, i.e. are the empty string, when using the non-native xpath
+        # evaluation engine. You'd want to do this for performance reasons in IE.
+        # However, this could break certain xpaths, for example an xpath that looks
+        # for an attribute whose value is NOT the empty string.
+        # 
+        # The hope is that such xpaths are relatively rare, but the user should
+        # have the option of using them. Note that this only influences xpath
+        # evaluation when using the ajaxslt engine (i.e. not "javascript-xpath").
+        #
+        # 'ignore' is boolean, true means we'll ignore attributes without value                        at the expense of xpath "correctness"; false means                        we'll sacrifice speed for correctness.
+        def ignore_attributes_without_value(ignore)
+            do_command("ignoreAttributesWithoutValue", [ignore,])
+        end
+
+
         # Runs the specified JavaScript snippet repeatedly until it evaluates to "true".
         # The snippet may have multiple lines, but only the result of the last line
         # will be considered.
@@ -1390,22 +1461,56 @@ module Selenium
         end
 
 
+        # Returns the value of the cookie with the specified name, or throws an error if the cookie is not present.
+        #
+        # 'name' is the name of the cookie
+        def get_cookie_by_name(name)
+            return get_string("getCookieByName", [name,])
+        end
+
+
+        # Returns true if a cookie with the specified name is present, or false otherwise.
+        #
+        # 'name' is the name of the cookie
+        def is_cookie_present(name)
+            return get_boolean("isCookiePresent", [name,])
+        end
+
+
         # Create a new cookie whose path and domain are same with those of current page
         # under test, unless you specified a path for this cookie explicitly.
         #
         # 'nameValuePair' is name and value of the cookie in a format "name=value"
-        # 'optionsString' is options for the cookie. Currently supported options include 'path' and 'max_age'.      the optionsString's format is "path=/path/, max_age=60". The order of options are irrelevant, the unit      of the value of 'max_age' is second.
+        # 'optionsString' is options for the cookie. Currently supported options include 'path', 'max_age' and 'domain'.      the optionsString's format is "path=/path/, max_age=60, domain=.foo.com". The order of options are irrelevant, the unit      of the value of 'max_age' is second.  Note that specifying a domain that isn't a subset of the current domain will      usually fail.
         def create_cookie(nameValuePair,optionsString)
             do_command("createCookie", [nameValuePair,optionsString,])
         end
 
 
-        # Delete a named cookie with specified path.
+        # Delete a named cookie with specified path and domain.  Be careful; to delete a cookie, you
+        # need to delete it using the exact same path and domain that were used to create the cookie.
+        # If the path is wrong, or the domain is wrong, the cookie simply won't be deleted.  Also
+        # note that specifying a domain that isn't a subset of the current domain will usually fail.
+        # 
+        # Since there's no way to discover at runtime the original path and domain of a given cookie,
+        # we've added an option called 'recurse' to try all sub-domains of the current domain with
+        # all paths that are a subset of the current path.  Beware; this option can be slow.  In
+        # big-O notation, it operates in O(n*m) time, where n is the number of dots in the domain
+        # name and m is the number of slashes in the path.
         #
         # 'name' is the name of the cookie to be deleted
-        # 'path' is the path property of the cookie to be deleted
-        def delete_cookie(name,path)
-            do_command("deleteCookie", [name,path,])
+        # 'optionsString' is options for the cookie. Currently supported options include 'path', 'domain'      and 'recurse.' The optionsString's format is "path=/path/, domain=.foo.com, recurse=true".      The order of options are irrelevant. Note that specifying a domain that isn't a subset of      the current domain will usually fail.
+        def delete_cookie(name,optionsString)
+            do_command("deleteCookie", [name,optionsString,])
+        end
+
+
+        # Calls deleteCookie with recurse=true on all cookies visible to the current page.
+        # As noted on the documentation for deleteCookie, recurse=true can be much slower
+        # than simply deleting the cookies using a known domain/path.
+        #
+        def delete_all_visible_cookies()
+            do_command("deleteAllVisibleCookies", [])
         end
 
 
@@ -1456,6 +1561,20 @@ module Selenium
         end
 
 
+        # Saves the entire contents of the current window canvas to a PNG file.
+        # Currently this only works in Mozilla and when running in chrome mode.
+        # Contrast this with the captureScreenshot command, which captures the
+        # contents of the OS viewport (i.e. whatever is currently being displayed
+        # on the monitor), and is implemented in the RC only. Implementation
+        # mostly borrowed from the Screengrab! Firefox extension. Please see
+        # http://www.screengrab.org for details.
+        #
+        # 'filename' is the path to the file to persist the screenshot as. No                  filename extension will be appended by default.                  Directories will not be created if they do not exist,                    and an exception will be thrown, possibly by native                  code.
+        def capture_entire_page_screenshot(filename)
+            do_command("captureEntirePageScreenshot", [filename,])
+        end
+
+
         # Writes a message to the status bar and adds a note to the browser-side
         # log.
         #
@@ -1465,11 +1584,66 @@ module Selenium
         end
 
 
+        # Sets a file input (upload) field to the file listed in fileLocator
+        #
+        # 'fieldLocator' is an element locator
+        # 'fileLocator' is a URL pointing to the specified file. Before the file  can be set in the input field (fieldLocator), Selenium RC may need to transfer the file    to the local machine before attaching the file in a web page form. This is common in selenium  grid configurations where the RC server driving the browser is not the same  machine that started the test.   Supported Browsers: Firefox ("*chrome") only.
+        def attach_file(fieldLocator,fileLocator)
+            do_command("attachFile", [fieldLocator,fileLocator,])
+        end
+
+
         # Captures a PNG screenshot to the specified file.
         #
         # 'filename' is the absolute path to the file to be written, e.g. "c:\blah\screenshot.png"
         def capture_screenshot(filename)
             do_command("captureScreenshot", [filename,])
+        end
+
+
+        # Kills the running Selenium Server and all browser sessions.  After you run this command, you will no longer be able to send
+        # commands to the server; you can't remotely start the server once it has been stopped.  Normally
+        # you should prefer to run the "stop" command, which terminates the current browser session, rather than 
+        # shutting down the entire server.
+        #
+        def shut_down_selenium_server()
+            do_command("shutDownSeleniumServer", [])
+        end
+
+
+        # Simulates a user pressing a key (without releasing it yet) by sending a native operating system keystroke.
+        # This function uses the java.awt.Robot class to send a keystroke; this more accurately simulates typing
+        # a key on the keyboard.  It does not honor settings from the shiftKeyDown, controlKeyDown, altKeyDown and
+        # metaKeyDown commands, and does not target any particular HTML element.  To send a keystroke to a particular
+        # element, focus on the element first before running this command.
+        #
+        # 'keycode' is an integer keycode number corresponding to a java.awt.event.KeyEvent; note that Java keycodes are NOT the same thing as JavaScript keycodes!
+        def key_down_native(keycode)
+            do_command("keyDownNative", [keycode,])
+        end
+
+
+        # Simulates a user releasing a key by sending a native operating system keystroke.
+        # This function uses the java.awt.Robot class to send a keystroke; this more accurately simulates typing
+        # a key on the keyboard.  It does not honor settings from the shiftKeyDown, controlKeyDown, altKeyDown and
+        # metaKeyDown commands, and does not target any particular HTML element.  To send a keystroke to a particular
+        # element, focus on the element first before running this command.
+        #
+        # 'keycode' is an integer keycode number corresponding to a java.awt.event.KeyEvent; note that Java keycodes are NOT the same thing as JavaScript keycodes!
+        def key_up_native(keycode)
+            do_command("keyUpNative", [keycode,])
+        end
+
+
+        # Simulates a user pressing and releasing a key by sending a native operating system keystroke.
+        # This function uses the java.awt.Robot class to send a keystroke; this more accurately simulates typing
+        # a key on the keyboard.  It does not honor settings from the shiftKeyDown, controlKeyDown, altKeyDown and
+        # metaKeyDown commands, and does not target any particular HTML element.  To send a keystroke to a particular
+        # element, focus on the element first before running this command.
+        #
+        # 'keycode' is an integer keycode number corresponding to a java.awt.event.KeyEvent; note that Java keycodes are NOT the same thing as JavaScript keycodes!
+        def key_press_native(keycode)
+            do_command("keyPressNative", [keycode,])
         end
 
 

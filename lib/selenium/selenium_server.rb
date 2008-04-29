@@ -27,8 +27,8 @@ class SeleniumServer
   end
   
   # Starts the Selenium server.  This does not return until the server is shutdown.
-  def start
-    SeleniumServer.run(['-port', port_number.to_s])
+  def start(*argv)
+    SeleniumServer.run(['-port', port_number.to_s] + argv)
   end
   
   # Stops the Selenium server
