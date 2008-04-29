@@ -14,6 +14,10 @@ describe 'basic operation with selenium' do
     @browser.start
     @browser.open('http://localhost:2000/index.html')
   end
+
+  after do
+    @browser.stop
+  end
   
   it 'click through menus' do
 #TEST START

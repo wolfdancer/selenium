@@ -26,7 +26,7 @@ module Selenium
     # click the link and wait for page to load
     def click_wait
       click
-      @browser.wait_for_page_to_load
+      @browser.wait_for_page_to_load(30000)
     end
 
     # click the link, wait for the page to load, and asserts the target that
@@ -34,7 +34,7 @@ module Selenium
     def go
       raise "target page not defined for link #{@locator}" unless @target
       click_wait
-      @target.assert_on_page
+      @target.assert_page
       @target
     end
   end
