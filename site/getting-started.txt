@@ -16,11 +16,14 @@ h1. Selenium RC
 You can use Selenium RC that is installed as a gem, so that your existing action based web testing still works.  The following
 example is using "RSpec":http://rspec.rubyforge.org:
 
-<template:code source="selenium-rc-example.rb" tag="RC" syntax="ruby"/>
+<template:code source="../spec/selenium/tc_interaction_example.rb" tag="INTERACTION" syntax="ruby"/>
 
 h1. Selenium Ruby
 
-You can use classes that come with Selenium ruby to write object based web testing.  You can get the full content of this example here ("selenium-ruby-example.rb":selenium-ruby-example.rb)
+You can use classes that come with Selenium ruby to write object based web testing.
 
-<template:code source="selenium-ruby-example.rb" tag="OBJECT" syntax="ruby"/>
+<template:code source="../spec/selenium/tc_domain_example.rb" tag="DOMAIN" syntax="ruby"/>
 
+The class that described Google home page is defined as following
+
+<template:code source="../spec/selenium/tc_domain_example.rb" tag="GOOGLEHOME" syntax="ruby"/>
