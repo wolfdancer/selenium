@@ -1,0 +1,12 @@
+---
+Team
+---
+|_.ID|_.Name|_.Information|
+|wolfdance|Shane Duan|"Home Page":http://www.shaneduan.com|
+
+h1. Contributors
+
+First of all, many thanks to the ThoughtWorks and its friends for creating such a wonderful project, "Selenium":http://www.openqa.com/selenium.
+
+|_.Name|_.Information|_.Contribution|
+|Brian Yamabe|n/a|"Selenium Textmate bundle":http://rubyforge.org/frs/?group_id=2789&release_id=9004|

@@ -13,8 +13,6 @@ describe 'Time Out Control' do
   end
 
 
-=begin
-
   it "should honor the time out argument" do
      link_list=["http://www.myantel.net.mm",
                "http://www.khitlunge.net.mm",
@@ -35,7 +33,5 @@ describe 'Time Out Control' do
      selenium.set_timeout(600000)
      link_list.each {|url| selenium.open(url) }
   end
-
-=end
 
 end

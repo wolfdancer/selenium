@@ -13,7 +13,7 @@ class Button
   
   def click_wait
     click
-    browser.wait_for_page_to_load
+    browser.wait_for_page_to_load()
   end
 end
 end
