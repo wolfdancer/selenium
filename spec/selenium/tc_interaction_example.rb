@@ -6,12 +6,16 @@ require 'selenium'
 
 context 'Test goole search' do
   before do
-    @sel = Selenium::SeleniumDriver.new("localhost", 4444, "*chrome", "http://www.google.com", 15000)
+    port = 4567
+    @server = Selenium::Server.on_port(4567)
+    @server.start
+    @sel = Selenium::SeleniumDriver.new("localhost", port, "*chrome", "http://www.google.com", 15000)
     @sel.start
   end
 
   after do
     @sel.stop
+    @server.stop
   end
 
   specify'searh hello world with google using interaction based script' do
