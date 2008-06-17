@@ -1,10 +1,4 @@
-$:.unshift File.join(File.dirname(__FILE__), '..', '..', 'lib', 'selenium')
-
-require 'web_page'
-
-$:.unshift File.dirname(__FILE__)
-
-require 'menu'
+require "#{File.dirname(__FILE__)}/spec_helper"
 
 module Selenium
   class SeleniumRubyPage < WebPage

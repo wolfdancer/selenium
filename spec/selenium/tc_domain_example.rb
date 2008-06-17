@@ -1,7 +1,4 @@
-$:.unshift File.join(File.dirname(__FILE__), '..', '..', 'lib')
-
-require 'spec'
-require 'selenium'
+require "#{File.dirname(__FILE__)}/spec_helper"
 
 #START GOOGLEHOME
 class GoogleHomPage

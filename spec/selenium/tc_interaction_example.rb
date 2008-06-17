@@ -1,8 +1,4 @@
-$:.unshift File.join(File.dirname(__FILE__), '..', '..', 'lib')
-
-#START INTERACTION
-require 'spec'
-require 'selenium'
+require "#{File.dirname(__FILE__)}/spec_helper"
 
 context 'Test goole search' do
   before do

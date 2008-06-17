@@ -1,8 +1,4 @@
-require 'spec'
-
-$:.unshift File.join(File.dirname(__FILE__), '..', '..', 'lib')
-
-require 'selenium'
+require "#{File.dirname(__FILE__)}/spec_helper"
 
 module Selenium
 describe 'server manager' do

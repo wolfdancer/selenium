@@ -1,10 +1,4 @@
-require 'spec'
-
-$:.unshift File.join(File.dirname(__FILE__), '..', '..')
-
-require 'lib/selenium'
-require 'spec/selenium/home_page'
-require 'spec/selenium/download_page'
+require "#{File.dirname(__FILE__)}/spec_helper"
 
 module Selenium
 describe 'basic operation with selenium' do

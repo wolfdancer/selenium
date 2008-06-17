@@ -1,6 +1,4 @@
-$:.unshift File.dirname(__FILE__)
-require 'menu'
-require 'web_page'
+require "#{File.dirname(__FILE__)}/spec_helper"
 
 module Selenium
 class DownloadPage < SeleniumRubyPage

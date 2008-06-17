@@ -1,11 +1,4 @@
-$:.unshift File.dirname(__FILE__)
-
-require 'home_page'
-
-$:.unshift File.join(File.dirname(__FILE__), '..', '..', 'lib', 'selenium')
-
-require 'directory_listing_page'
-require 'license_page'
+require "#{File.dirname(__FILE__)}/spec_helper"
 
 module Selenium
   class Menu
