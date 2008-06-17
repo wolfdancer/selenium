@@ -7,7 +7,11 @@ describe 'basic operation with selenium' do
     port = 4567
     @server = Selenium::Server.on_port(port)
     @server.start
-    @browser = Selenium::SeleniumDriver.new("localhost", port, "*iexplore", "http://localhost:2000", 10000)
+    if RUBY_PLATFORM =~ /[^r]win/
+      @browser = Selenium::SeleniumDriver.new("localhost", port, "*iexplore", "http://localhost:2000", 10000)
+    else
+      @browser = Selenium::SeleniumDriver.new("localhost", port, "*firefox", "http://localhost:2000", 10000)
+    end
     @browser.start
     @browser.open('http://localhost:2000/index.html')
   end
