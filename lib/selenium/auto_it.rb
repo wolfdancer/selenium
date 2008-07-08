@@ -1,43 +1,5 @@
+$:.unshift File.join(File.dirname(__FILE__))
+
 require 'win32ole'
-
-class AutoIt
-  @@autoit = nil
-
-  def self.load
-    begin
-      @@autoit = load_instance
-    rescue WIN32OLERuntimeError
-      registerAutoItDll
-      @@autoit = load_instance
-    end
-    @@autoit
-  end
-
-  def self.load_instance
-    @@autoit = WIN32OLE.new('AutoItX3.Control') unless @@autoit
-    @@autoit
-  end
-
-  def self.reset
-    if @@autoit
-      @@autoit.ole_free
-      @@autoit =nil
-      dll = File.join(File.dirname(__FILE__), 'AutoItX3.dll')
-      system("regsvr32.exe /s /u #{dll}")
-    end
-  end
-
-  def self.registerAutoItDll
-    dll = File.join(File.dirname(__FILE__), 'AutoItX3.dll')
-    system("regsvr32.exe /s #{dll}")
-  end
-
-  def initialize
-    @autoit = AutoIt.load
-  end
-
-  def on_window_active(title, text = nil)
-    @autoit.WinWaitActive(title, text, 30)
-    yield @@autoit
-  end
-end
+require 'auto_it_driver'
+require 'auto_it_window'

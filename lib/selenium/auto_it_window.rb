@@ -1,12 +1,22 @@
 $:.unshift File.join(File.dirname(__FILE__))
 
-require 'AutoIt'
+require 'auto_it'
 
 class AutoItWindow
   def initialize(autoit, title, text=nil)
     @autoit = autoit
     @title = title
     @text = text
+  end
+
+  def self.wait_for(autoit, title, text = nil)
+    window = self.new(autoit, title, text)
+    window.wait_for_activation
+    window
+  end
+
+  def wait_for_activation
+    @autoit.WinWaitActive(@title, @text)
   end
 
   def activate
@@ -21,9 +31,13 @@ class AutoItWindow
     AutoItWindowState.new(@autoit.WinGetState(@title, @text))
   end
 
-  def type(keys)
+  def send_keys(keys)
     activate_if_needed
     @autoit.Send(keys)
+  end
+
+  def close
+    @autoit.WinClose(@title)
   end
 
   def activate_if_needed

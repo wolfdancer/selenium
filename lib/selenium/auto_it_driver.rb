@@ -1,5 +1,4 @@
-require 'win32ole'
-
+module BuildMaster
 class AutoIt
   @@autoit = nil
 
@@ -22,14 +21,16 @@ class AutoIt
     if @@autoit
       @@autoit.ole_free
       @@autoit =nil
-      dll = File.join(File.dirname(__FILE__), 'AutoItX3.dll')
       system("regsvr32.exe /s /u #{dll}")
     end
   end
 
   def self.registerAutoItDll
-    dll = File.join(File.dirname(__FILE__), 'AutoItX3.dll')
     system("regsvr32.exe /s #{dll}")
+  end
+
+  def self.dll
+    File.join(File.dirname(__FILE__), 'autoit', 'AutoItX3.dll')
   end
 
   def initialize
@@ -40,12 +41,5 @@ class AutoIt
     @autoit.WinWaitActive(title, text, 30)
     yield @@autoit
   end
-
-  def method_missing(symbol, *argv)
-    if (argv.empty?)
-      @autoit.send symbol
-    else
-      @autoit.send symbol, argv
-    end
-  end
+end
 end
