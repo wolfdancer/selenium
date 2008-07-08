@@ -19,16 +19,17 @@ class SeleniumServer
   end
   
   public
-  attr_reader :port_number
+  attr_reader :port_number, :request_timeout
 
   # Initialize the server driver with an opitonal port number (default to 4444)
   def initialize(port_number = 4444)
     @port_number = port_number
+    @request_timeout = 30
   end
   
   # Starts the Selenium server.  This does not return until the server is shutdown.
   def start(*argv)
-    SeleniumServer.run(['-port', port_number.to_s] + argv)
+    SeleniumServer.run(['-port', port_number.to_s, '-timeout', request_timeout.to_s] + argv)
   end
   
   # Stops the Selenium server

@@ -35,6 +35,10 @@ class Server
     @status = 'started'
   end
 
+  def driver(browser_start_command, browser_url)
+    SeleniumDriver.new('localhost', @server.port_number, browser_start_command, browser_url, @server.request_timeout * 1000)
+  end
+
   # Starts the server, does not return until the server shuts down
   def run(*argv)
     @server.start(*argv)

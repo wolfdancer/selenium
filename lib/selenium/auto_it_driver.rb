@@ -1,4 +1,4 @@
-module BuildMaster
+module Selenium
 class AutoIt
   @@autoit = nil
 

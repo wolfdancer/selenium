@@ -3,7 +3,7 @@ $:.unshift File.join(File.dirname(__FILE__), '..', '..')
 require 'lib/selenium/auto_it'
 require 'spec'
 
-module BuildMaster
+module Selenium
   describe AutoIt do
     it 'should control notepad' do
       autoit = AutoIt.load
