@@ -2,31 +2,40 @@ module Selenium
 
   # Link class that models the behavior of a link
   class Link
-    attr_reader :browser
+    attr_reader :webpage
 
     def Link::by_id(browser, id, target = nil)
-      Link.new(browser, "id=#{id}", target)
+      Link.new(WebPage.new(browser), "id=#{id}", target)
     end
 
     def Link::by_text(browser, text, target = nil)
-      Link.new(browser, "link=#{text}", target)
+      Link.new(WebPage.new(browser), "link=#{text}", target)
     end
 
-    def initialize(browser, locator, target = nil)
-      @browser = browser
+    def initialize(webpage, locator, target = nil)
+      webpage = WebPage.new(webpage) if webpage.is_a? SeleniumDriver
+      @webpage = webpage
       @locator = locator
       @target = target
     end
 
+    def browser
+      webpage.browser
+    end
+
+    def present?
+      webpage.browser.is_element_present @locator
+    end
+
     # click the link
     def click
-      @browser.click(@locator)
+      @webpage.click(@locator)
     end
 
     # click the link and wait for page to load
     def click_wait
       click
-      @browser.wait_for_page_to_load(30000)
+      @webpage.wait_for_load
     end
 
     # click the link, wait for the page to load, and asserts the target that
@@ -34,7 +43,7 @@ module Selenium
     def go
       raise "target page not defined for link #{@locator}" unless @target
       click_wait
-      @target.assert_page
+      @target.assert_page if target
       @target
     end
   end

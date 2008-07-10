@@ -1,3 +1,5 @@
+require 'uri'
+
 module Selenium
 # The class that can manages the server driver classes.
 # This class is originally copied from the BuildMaster project.
@@ -37,6 +39,16 @@ class Server
 
   def driver(browser_start_command, browser_url)
     SeleniumDriver.new('localhost', @server.port_number, browser_start_command, browser_url, @server.request_timeout * 1000)
+  end
+
+  def open(browser_start_command, browser_url)
+    url = URI.parse(browser_url)
+    browser = driver(browser_start_command, URI::Generic::new(url.scheme, url.userinfo, url.host, url.port, nil, nil, nil, nil, nil))
+    browser.start
+    browser.open(url.request_uri)
+    page = WebPage.new(browser)
+    page.wait_for_load
+    page
   end
 
   # Starts the server, does not return until the server shuts down
