@@ -34,8 +34,7 @@ module Selenium
 
     # click the link and wait for page to load
     def click_wait
-      click
-      @webpage.wait_for_load
+      @webpage.click_wait(@locator)
     end
 
     # click the link, wait for the page to load, and asserts the target that

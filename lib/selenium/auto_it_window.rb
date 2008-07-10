@@ -15,8 +15,13 @@ class AutoItWindow
     window
   end
 
+  def self.on_activation(autoit, title, text = nil)
+    window = wait_for(autoit, title, text)
+    yield window
+  end
+
   def wait_for_activation
-    @autoit.WinWaitActive(@title, @text)
+    @autoit.WinWaitActive(@title, @text, 30)
   end
 
   def activate
