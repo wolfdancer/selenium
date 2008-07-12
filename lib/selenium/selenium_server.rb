@@ -7,11 +7,9 @@ module Selenium
   # NOTE: The start does not return until the server shuts down.
   class SeleniumServer
 
-    def SeleniumServer::run(argv)
+    def SeleniumServer::run(argv, vmparameter='')
       jar_file = SeleniumServer.jar_file
-      logging_option = ''
-      logging_option = '-Dorg.apache.commons.logging.Log=org.apache.commons.logging.impl.SimpleLog -Dorg.apache.commons.logging.simplelog.defaultlog=error' unless @print_log
-      command = "java #{logging_option} -jar #{jar_file} #{argv.join(' ')}"
+      command = "java #{vmparameter} -jar #{jar_file} #{argv.join(' ')}"
       puts command
       system(command)
     end
@@ -34,7 +32,9 @@ module Selenium
 
     # Starts the Selenium server.  This does not return until the server is shutdown.
     def start(*argv)
-      SeleniumServer.run(['-port', port_number.to_s, '-timeout', request_timeout.to_s] + argv)
+      logging_option = ''
+      logging_option = '-Dorg.apache.commons.logging.Log=org.apache.commons.logging.impl.SimpleLog -Dorg.apache.commons.logging.simplelog.defaultlog=error' unless @print_log
+      SeleniumServer.run(['-port', port_number.to_s, '-timeout', request_timeout.to_s] + argv, logging_option)
     end
 
     # Stops the Selenium server
