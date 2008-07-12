@@ -35,16 +35,24 @@ module Selenium
       end
     end
 
-    def link_by_text(text, target=nil)
-      Link.new(self, "link=#{text}", target)
+    def link(how, what=nil)
+      if (how == :text)
+        locator = "link=#{what}"
+      elsif (how == :href)
+        locator = "xpath=//a[@href='#{what}']"
+      else
+        locator = element_locator(how, what)
+      end
+      Link.new(self, locator)
     end
 
-    def link_by_xpath(xpath, target=nil)
-      Link.new(self, "xpath=#{xpath}", target)
-    end
-
-    def link_by_target(uri, target=nil)
-      link_by_xpath("//a[@href='#{uri}']", target)
+    def element_locator(how, what=nil)
+      locator = how
+      if (not what.nil?)
+        if (how == :xpath)
+          locator = "xpath=#{what}"
+        end
+      end
     end
 
     def file_upload(name)

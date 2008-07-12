@@ -2,7 +2,7 @@ module Selenium
 
   # Link class that models the behavior of a link
   class Link
-    attr_reader :webpage
+    attr_reader :webpage, :locator
 
     def Link::by_id(browser, id, target = nil)
       Link.new(WebPage.new(browser), "id=#{id}", target)

@@ -44,18 +44,23 @@ module Selenium
 
     # Check if the Selenium is running by sending a test_complete command with invalid session ID
     def running?
-      url = URI.parse("http://localhost:#{@port_number}/selenium-server/driver/?cmd=testComplete&sessionId=smoketest")
-      request = Net::HTTP::Get.new(url.path)
       begin
-        res = Net::HTTP.start(url.host, url.port) {|http|
-          http.read_timeout=5
-          http.request(request)
-        }
-        puts "response: #{res}"
+        ping
       rescue Errno::EBADF, Errno::ECONNREFUSED => e
         return false
       end
       return true
+    end
+
+    # ping the server to see if it is running, raises error if not
+    # returns the ping status
+    def ping
+      url = URI.parse("http://localhost:#{@port_number}/selenium-server/driver/?cmd=testComplete&sessionId=smoketest")
+      request = Net::HTTP::Get.new(url.path)
+      Net::HTTP.start(url.host, url.port) {|http|
+        http.read_timeout=5
+        http.request(request)
+      }
     end
   end
 end

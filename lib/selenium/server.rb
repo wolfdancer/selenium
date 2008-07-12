@@ -30,10 +30,16 @@ class Server
     @status = 'stopped'
   end
 
+  def print_log=(value)
+    @server.print_log = value
+  end
+
   # Starts the server, returns when the server is up and running
   def start(*argv)
+    puts "starting selenium server..."
     starting_server(*argv)
     wait_for_condition {@server.running?}
+    puts "started selenium server"
     @status = 'started'
   end
 
@@ -58,8 +64,10 @@ class Server
 
   # Stops the server, returns when the server is no longer running
   def stop
+    puts "stopping selenium server..."
     stopping_server
     wait_for_condition {not @server.running?}
+    puts "stopped selenium server."
     @status = 'stopped'
   end
 
