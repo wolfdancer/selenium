@@ -44,6 +44,10 @@ module Selenium
       end
     end
 
+    def alert
+      Alert.new(self)
+    end
+
     def link(how, what=nil)
       if (how == :text)
         locator = "link=#{what}"
@@ -57,6 +61,10 @@ module Selenium
 
     def text_field(how, what=nil)
       TextField.new(self, element_locator(how, what))
+    end
+
+    def text_area(how, what=nil)
+      TextArea.new(self, element_locator(how, what))
     end
 
     def element(how, what=nil)
@@ -103,8 +111,16 @@ module Selenium
       @browser.is_element_present(locator)
     end
 
+    def alert_present?
+      @browser.is_alert_present
+    end
+
     def text_present?(text)
       @browser.is_text_present(text)
+    end
+
+    def double_click(locator)
+      @browser.double_click(locator)
     end
 
     def click_wait(locator)
@@ -119,6 +135,10 @@ module Selenium
 
     def value(locator)
       @browser.get_value(locator)
+    end
+
+    def alert_message
+      @browser.get_alert
     end
 
     def upload(locator, file)
@@ -136,6 +156,10 @@ module Selenium
 
     def capture_screen(file)
       @browser.capture_screenshot(file)
+    end
+
+    def to_s
+      "#{self.class}('#{@expected_title}') - #{browser.to_s}"
     end
 	
   end

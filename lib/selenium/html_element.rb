@@ -30,5 +30,9 @@ module Selenium
       @webpage.click_wait(@locator)
     end
 
+    def double_click
+      @webpage.double_click(@locator)
+    end
+
   end
 end
