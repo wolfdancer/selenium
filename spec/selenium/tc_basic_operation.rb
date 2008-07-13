@@ -1,41 +1,37 @@
 require 'spec'
 
-$:.unshift File.join(File.dirname(__FILE__), '..', '..')
+$:.unshift File.join(File.dirname(__FILE__))
 
-require 'lib/selenium'
-require 'spec/selenium/home_page'
-require 'spec/selenium/download_page'
+require '../../lib/selenium'
+require 'examples/selenium_ruby/home_page'
+require 'examples/selenium_ruby/download_page'
 
 module Selenium
 describe 'basic operation with selenium' do
-  
   before do
     port = 4567
     @server = Selenium::Server.on_port(port)
     @server.start
-    @browser = Selenium::SeleniumDriver.new("localhost", port, "*iexplore", "http://localhost:2000", 10000)
-    @browser.start
-    @browser.open('http://localhost:2000/index.html')
+    @webpage = @server.open("*iexplore", 'http://localhost:2000/index.html')
+    @browser = @webpage.browser
   end
 
   after do
-    @browser.stop
+    @webpage.close
     @server.stop
   end
   
   it 'should click through menus' do
-=begin comment
 #TEST START
     page = HomePage.new(@browser)
     page.menu.download_link.click_wait
     page = DownloadPage.new(@browser)
-    page.assert_page
+    page.should be_present
     page = page.menu.home_link.go
-    page.link_to_entry('index.txt').click_wait
+    page.link(:text, 'index.txt').click_wait
     page = HomePage.new(@browser)
     page.menu.license_link.go
 #TEST END
-=end comment
   end
 end
 end

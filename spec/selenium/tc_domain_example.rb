@@ -1,21 +1,13 @@
-$:.unshift File.join(File.dirname(__FILE__), '..', '..', 'lib')
+$:.unshift File.join(File.dirname(__FILE__))
 
 require 'spec'
-require 'selenium'
+require '../../lib/selenium'
 
 #START GOOGLEHOME
-class GoogleHomPage
-  include Selenium::Locator
-  attr_reader :browser
-
-  def GoogleHomPage::open(sel)
-    sel.open("http://www.google.com/webhp")
-    GoogleHomPage.new(sel)
-  end
-
+class GoogleHomPage < WebPage
   def initialize(browser)
-    @browser = browser
-    end
+    super(browser, 'Google')
+  end
 
   def title
     browser.get_title
@@ -37,7 +29,7 @@ context 'Test goole search' do
     port = 4567
     @server = Selenium::Server.on_port(port)
     @server.start
-    @sel = Selenium::SeleniumDriver.new("localhost", port, "*chrome", "http://www.google.com", 15000)
+    @webpage = @server.open('*chrome D:\Program Files\Mozilla', "http://www.google.com")
     @sel.start
   end
 
@@ -46,7 +38,7 @@ context 'Test goole search' do
     @server.stop
   end
 
-#START DOMAIN
+  #START DOMAIN
   specify'searh hello world with google using docmain based script' do
     page = GoogleHomPage.open(@sel)
     page.search_field.type('hello world')

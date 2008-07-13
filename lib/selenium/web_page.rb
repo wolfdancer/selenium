@@ -16,7 +16,16 @@ module Selenium
     end
 
     def title
+      raise 'nil as browser' unless @browser
       @browser.get_title
+    end
+
+    def present?
+      title == @expected_title
+    end
+
+    def ensure_present
+      title.should == @expected_title
     end
 
     def html
@@ -49,14 +58,16 @@ module Selenium
     def element_locator(how, what=nil)
       locator = how
       if (not what.nil?)
-        if (how == :xpath)
-          locator = "xpath=#{what}"
+        if (how == :xpath or how == :name or how == :id)
+          locator = "#{how}=#{what}"
+        else
+          raise "couldn't understand how to build locator using #{how} with #{what}"
         end
       end
     end
 
-    def file_upload(name)
-      FileUpload.new(self, name)
+    def file_upload(how, what)
+      FileUpload.new(self, element_locator(how, what))
     end
 
     def close
@@ -72,8 +83,22 @@ module Selenium
       wait_for_load
     end
 
+    # enter the text to the element found by locator
+    def enter(locator, text)
+      @browser.type(locator, text)
+    end
+
+    def value(locator)
+      @browser.get_value(locator)
+    end
+
     def upload(locator, file)
-      @browser.attach_file(locator, file)
+#      @browser.attach_file(locator, file)
+      @browser.click(locator)
+      require 'auto_it'
+      autoit = AutoIt.load
+      window = AutoItWindow.wait_for(autoit, 'File Upload')
+      puts window
     end
 
     def capture_page(file)

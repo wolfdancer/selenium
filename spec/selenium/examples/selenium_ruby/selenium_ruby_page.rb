@@ -1,9 +1,6 @@
-$:.unshift File.join(File.dirname(__FILE__), '..', '..', 'lib', 'selenium')
-
-require 'web_page'
-
 $:.unshift File.dirname(__FILE__)
 
+#require '../../../../lib/selenium'
 require 'menu'
 
 module Selenium
@@ -14,12 +11,8 @@ module Selenium
       super(browser, expected_title)
     end
 
-    def assert_page
-      title.should == @expected_title
-    end
-
     def menu
-      Menu.new(@browser)
+      Menu.new(self)
     end
   end
 end

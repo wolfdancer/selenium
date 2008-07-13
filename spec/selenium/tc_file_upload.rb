@@ -17,7 +17,8 @@ module Selenium
     end
 
     before do
-      @page = @server.open('*chrome D:\Program Files\Mozilla Firefox2\firefox.exe', 'http://www.rubyforge.org/projects/selenium')
+      @page = @server.open('*iexplore', 'http://www.rubyforge.org/projects/selenium')
+#      @page = @server.open('*chrome D:\Program Files\Mozilla Firefox2\firefox.exe', 'http://www.rubyforge.org/projects/selenium')
     end
 
     after do
@@ -45,7 +46,8 @@ module Selenium
       @page.link(:text, 'Files').click_wait
       @page.link(:href, '/frs/admin/?group_id=2789').click_wait
       @page.link(:xpath, "//a[@href='qrs.php?package_id=3298&group_id=2789']").click_wait
-      @page.file_upload('userfile').enter("file:///#{__FILE__}")
+      @page.file_upload(:name, 'userfile').enter("file:///#{__FILE__}")
+#      @page.file_upload('userfile').enter("file:///#{__FILE__}")
     end
   end
 end

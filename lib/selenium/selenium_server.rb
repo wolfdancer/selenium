@@ -33,7 +33,7 @@ module Selenium
     # Starts the Selenium server.  This does not return until the server is shutdown.
     def start(*argv)
       logging_option = ''
-      logging_option = '-Dorg.apache.commons.logging.Log=org.apache.commons.logging.impl.SimpleLog -Dorg.apache.commons.logging.simplelog.defaultlog=error' unless @print_log
+      logging_option = '-Dorg.apache.commons.logging.Log=org.apache.commons.logging.impl.SimpleLog -Dorg.apache.commons.logging.simplelog.defaultlog=warn' unless @print_log
       SeleniumServer.run(['-port', port_number.to_s, '-timeout', request_timeout.to_s] + argv, logging_option)
     end
 

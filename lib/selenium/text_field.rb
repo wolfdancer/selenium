@@ -1,18 +1,17 @@
 module Selenium
-class TextField
+class TextField < HtmlElement
   attr_reader :browser
   
-  def initialize(browser, locator)
-    @browser = browser
-    @locator = locator
+  def initialize(webpage, locator)
+    super(webpage, locator)
   end
   
-  def type(value)
-    @browser.type(@locator, value)
+  def enter(value)
+    @webpage.type(@locator, value)
   end
   
   def value
-    @browser.get_value(@locator)
+    @webpage.value(@locator)
   end
 end
 end

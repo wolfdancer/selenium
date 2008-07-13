@@ -1,9 +1,7 @@
 module Selenium
 
   # Link class that models the behavior of a link
-  class Link
-    attr_reader :webpage, :locator
-
+  class Link < HtmlElement
     def Link::by_id(browser, id, target = nil)
       Link.new(WebPage.new(browser), "id=#{id}", target)
     end
@@ -13,28 +11,12 @@ module Selenium
     end
 
     def initialize(webpage, locator, target = nil)
-      webpage = WebPage.new(webpage) if webpage.is_a? SeleniumDriver
-      @webpage = webpage
-      @locator = locator
+      super(webpage, locator)
       @target = target
     end
 
-    def browser
-      webpage.browser
-    end
-
-    def present?
-      webpage.browser.is_element_present @locator
-    end
-
-    # click the link
-    def click
-      @webpage.click(@locator)
-    end
-
-    # click the link and wait for page to load
-    def click_wait
-      @webpage.click_wait(@locator)
+    def with_target(target)
+      Link.new(webpage, locator, target.new(webpage.browser))
     end
 
     # click the link, wait for the page to load, and asserts the target that
@@ -42,7 +24,7 @@ module Selenium
     def go
       raise "target page not defined for link #{@locator}" unless @target
       click_wait
-      @target.assert_page if target
+      @target.ensure_present
       @target
     end
   end
