@@ -4,7 +4,7 @@ require 'spec'
 require '../../lib/selenium'
 
 #START GOOGLEHOME
-class GoogleHomPage < WebPage
+class GoogleHomPage < Selenium::WebPage
   def initialize(browser)
     super(browser, 'Google')
   end
@@ -14,34 +14,41 @@ class GoogleHomPage < WebPage
   end
 
   def search_field
-    Selenium::TextField.new(browser, by_name('q'))
+    text_field(:name, 'q')
   end
 
   def search_button
-    Selenium::Button.new(browser, by_name('btnG'))
+    button(:name, 'btnG')
   end
 
 end
 #END GOOGLEHOME
 
 context 'Test goole search' do
-  before do
+  before(:all) do
     port = 4567
     @server = Selenium::Server.on_port(port)
     @server.start
-    @webpage = @server.open('*chrome D:\Program Files\Mozilla', "http://www.google.com")
-    @sel.start
   end
 
-  after do
-    @sel.stop
+  before(:each) do
+    @webpage = @server.open('*chrome', 'http://www.google.com/webhp')
+  end
+
+  after(:each) do
+    @webpage.close if @webpage
+  end
+
+  after(:all) do
+    puts "stopping server"
     @server.stop
   end
 
-  #START DOMAIN
+#START DOMAIN
   specify'searh hello world with google using docmain based script' do
-    page = GoogleHomPage.open(@sel)
-    page.search_field.type('hello world')
+    page = GoogleHomPage.new(@webpage.browser)
+    page.should be_present
+    page.search_field.enter('hello world')
     page.search_button.click_wait
     page.title.should == 'hello world - Google Search'
     page.search_field.value.should == 'hello world'

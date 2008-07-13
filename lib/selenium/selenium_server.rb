@@ -9,9 +9,22 @@ module Selenium
 
     def SeleniumServer::run(argv, vmparameter='')
       jar_file = SeleniumServer.jar_file
-      command = "java #{vmparameter} -jar #{jar_file} #{argv.join(' ')}"
-      puts command
-      system(command)
+      if (argv[0] == '-stop')
+        server = SeleniumServer.new(argv[1])
+        puts "stopping server on port #{server.port_number}"
+        server.stop
+      elsif argv[0] == '-check'
+        server = SeleniumServer.new(argv[1])
+        if (server.running?)
+          puts "server running on #{server.port_number}"
+        else
+          puts "server not running on #{server.port_number}"
+        end
+      else
+        command = "java #{vmparameter} -jar #{jar_file} #{argv.join(' ')}"
+        puts command
+        system(command)
+      end
     end
 
     private
@@ -24,10 +37,15 @@ module Selenium
     attr_accessor :print_log
 
     # Initialize the server driver with an opitonal port number (default to 4444)
-    def initialize(port_number = 4444)
-      @port_number = port_number
+    def initialize(port_number_to_use = 4444)
+      port_number_to_use = 4444 unless port_number_to_use
+      @port_number = port_number_to_use
       @request_timeout = 30
       @print_log = false
+    end
+
+    def port_number
+      @port_number
     end
 
     # Starts the Selenium server.  This does not return until the server is shutdown.

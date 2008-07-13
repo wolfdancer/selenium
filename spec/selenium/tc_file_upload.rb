@@ -17,8 +17,8 @@ module Selenium
     end
 
     before do
-      @page = @server.open('*iexplore', 'http://www.rubyforge.org/projects/selenium')
-#      @page = @server.open('*chrome D:\Program Files\Mozilla Firefox2\firefox.exe', 'http://www.rubyforge.org/projects/selenium')
+#      @page = @server.open('*iexplore', 'http://www.rubyforge.org/projects/selenium')
+      @page = @server.open('*chrome D:\Program Files\Mozilla Firefox2\firefox.exe', 'http://www.rubyforge.org/projects/selenium')
     end
 
     after do

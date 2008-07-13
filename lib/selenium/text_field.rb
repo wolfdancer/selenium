@@ -7,7 +7,7 @@ class TextField < HtmlElement
   end
   
   def enter(value)
-    @webpage.type(@locator, value)
+    @webpage.enter(@locator, value)
   end
   
   def value

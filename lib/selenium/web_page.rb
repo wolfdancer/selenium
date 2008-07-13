@@ -55,6 +55,14 @@ module Selenium
       Link.new(self, locator)
     end
 
+    def text_field(how, what=nil)
+      TextField.new(self, element_locator(how, what))
+    end
+
+    def button(how, what=nil)
+      Button.new(self, element_locator(how, what))
+    end
+
     def element_locator(how, what=nil)
       locator = how
       if (not what.nil?)
@@ -68,6 +76,10 @@ module Selenium
 
     def file_upload(how, what)
       FileUpload.new(self, element_locator(how, what))
+    end
+
+    def open(url)
+      @browser.open(url)
     end
 
     def close
