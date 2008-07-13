@@ -21,12 +21,21 @@ class Server
   # * error
   attr_reader :status
 
+  # The timeout setting for selenium in seconds
+  attr_reader :timeout
+
   def Server::on_port(port)
     Server.new(SeleniumServer.new(port))
   end
 
-  def initialize(server = SeleniumServer.new)
-    @server = server
+  # Create a selenium server that can be controlled directly
+  def initialize(port_number, timeout=60)
+    if port_number.is_a? SeleniumServer
+      # backward compatibility, to be removed in 2.0
+      @server = port_number 
+    else
+      @server = SeleniumServer.new(port_number, timeout)
+    end
     @status = 'stopped'
   end
 

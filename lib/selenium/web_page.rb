@@ -59,8 +59,8 @@ module Selenium
       TextField.new(self, element_locator(how, what))
     end
 
-    def button(how, what=nil)
-      Button.new(self, element_locator(how, what))
+    def element(how, what=nil)
+      HtmlElement.new(self, element_locator(how,what))
     end
 
     def element_locator(how, what=nil)
@@ -78,8 +78,9 @@ module Selenium
       FileUpload.new(self, element_locator(how, what))
     end
 
-    def open(url)
+    def open_page(url)
       @browser.open(url)
+      wait_for_load
     end
 
     def close
@@ -88,6 +89,22 @@ module Selenium
 
     def click(locator)
       @browser.click(locator)
+    end
+
+    def text(locator)
+      @browser.get_text(locator)
+    end
+
+    def button(how, what=nil)
+      Button.new(self, element_locator(how, what))
+    end
+
+    def element_present?(locator)
+      @browser.is_element_present(locator)
+    end
+
+    def text_present?(text)
+      @browser.is_text_present(text)
     end
 
     def click_wait(locator)

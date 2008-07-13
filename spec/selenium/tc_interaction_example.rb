@@ -18,7 +18,7 @@ context 'Test goole search' do
   end
 
   specify'searh hello world with google using interaction based script' do
-    @page.open("/")
+    @page.open_page("/")
     @page.title.should == 'Google'
     @page.enter("q", "hello world")
     @page.click("btnG")

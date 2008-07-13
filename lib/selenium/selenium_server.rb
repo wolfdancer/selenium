@@ -34,13 +34,15 @@ module Selenium
 
     public
     attr_reader :port_number, :request_timeout
+    # Turn off INFO level server logs, only WARN and above message will be printed
     attr_accessor :print_log
 
     # Initialize the server driver with an opitonal port number (default to 4444)
-    def initialize(port_number_to_use = 4444)
+    # and request timeout (default to 30)
+    def initialize(port_number_to_use = 4444, request_timeout=30)
       port_number_to_use = 4444 unless port_number_to_use
       @port_number = port_number_to_use
-      @request_timeout = 30
+      @request_timeout = request_timeout
       @print_log = false
     end
 

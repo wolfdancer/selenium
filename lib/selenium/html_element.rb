@@ -11,8 +11,12 @@ module Selenium
       webpage.browser
     end
 
+    def text
+      @webpage.text(@locator)
+    end
+
     def present?
-      webpage.browser.is_element_present @locator
+      @webpage.element_present? @locator
     end
 
     # click the element
