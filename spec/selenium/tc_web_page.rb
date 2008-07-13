@@ -1,8 +1,8 @@
 require 'spec'
 
-$:.unshift File.join(File.dirname(__FILE__))
+$:.unshift File.join(File.dirname(__FILE__), '..', '..')
 
-require '../../lib/selenium'
+require 'lib/selenium'
 
 module Selenium
   describe WebPage do

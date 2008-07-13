@@ -7,7 +7,7 @@ require 'selenium'
 context 'Test goole search' do
   before do
     port = 4567
-    @server = Selenium::Server.on_port(4567)
+    @server = Selenium::Server.on_port(port)
     @server.start
     @page = @server.open('*chrome D:\Program Files\Mozilla Firefox2\firefox.exe', 'http://www.google.com')
   end

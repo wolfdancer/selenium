@@ -1,10 +1,10 @@
 require 'spec'
 
-$:.unshift File.join(File.dirname(__FILE__))
+$:.unshift File.join(File.dirname(__FILE__), '..', '..')
 
-require '../../lib/selenium'
-require 'examples/selenium_ruby/home_page'
-require 'examples/selenium_ruby/download_page'
+require 'lib/selenium'
+require 'spec/selenium/examples/selenium_ruby/home_page'
+require 'spec/selenium/examples/selenium_ruby/download_page'
 
 module Selenium
 describe 'basic operation with selenium' do

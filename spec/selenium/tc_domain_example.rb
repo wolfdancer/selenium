@@ -1,7 +1,7 @@
-$:.unshift File.join(File.dirname(__FILE__))
+$:.unshift File.join(File.dirname(__FILE__), '..', '..')
 
 require 'spec'
-require '../../lib/selenium'
+require 'lib/selenium'
 
 #START GOOGLEHOME
 class GoogleHomPage < Selenium::WebPage
@@ -32,7 +32,7 @@ context 'Test goole search' do
   end
 
   before(:each) do
-    @webpage = @server.open('*chrome', 'http://www.google.com/webhp')
+    @webpage = @server.open('*chrome D:\Program Files\Mozilla Firefox2\firefox.exe', 'http://www.google.com/webhp')
   end
 
   after(:each) do
