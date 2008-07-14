@@ -19,12 +19,14 @@ module Selenium
       @server.stop
     end
 
-    it 'should support double click' do
+    it 'should support double click and key press' do
       text_area = @webpage.text_area(:name, 'doubleclick')
       text_area.enter 'html double click'
       text_area.double_click
       @webpage.alert.should be_present
       @webpage.alert.message.should == 'double clicked with value html double click'
+      text_area.key_press('b')
+      text_area.value.should == 'html double clickb'
     end
   end
 end

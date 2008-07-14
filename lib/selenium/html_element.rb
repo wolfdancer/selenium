@@ -34,5 +34,9 @@ module Selenium
       @webpage.double_click(@locator)
     end
 
+    def key_press(key)
+      @webpage.key_press(@locator, key)
+    end
+
   end
 end

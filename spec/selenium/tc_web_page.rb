@@ -9,10 +9,11 @@ module Selenium
     before(:all) do
       @server = Server.new(2344)
       @server.start
+      @@webpage = nil
     end
 
-    after do
-      @webpage.close if @webpage
+    before do
+      @@webpage.open_page('/') if @@webpage
     end
 
     after(:all) do
@@ -20,8 +21,8 @@ module Selenium
     end
 
     def webpage
-      @webpage = @server.open('*chrome D:\Program Files\Mozilla Firefox2\firefox.exe', 'http://localhost:2000/') unless @webpage
-      @webpage
+      @@webpage = @server.open('*chrome D:\Program Files\Mozilla Firefox2\firefox.exe', 'http://localhost:2000/') unless @@webpage
+      @@webpage
     end
 
     it 'should have meaningful to_s support' do
@@ -39,12 +40,54 @@ module Selenium
       webpage.link(:href, 'a.html').locator.should == "xpath=//a[@href='a.html']"
     end
 
-    it 'should support double click' do
+    it 'should support double click and key press' do
       webpage.open_page('/test/index.html')
       webpage.enter('doubleclick', 'webpage')
       webpage.double_click('doubleclick')
       webpage.should be_alert_present
       webpage.alert_message.should == 'double clicked with value webpage'
+      webpage.key_press('doubleclick', 'a')
+      webpage.value('doubleclick').should == 'webpagea'
     end
+
+    it 'should support context menu' do
+      webpage.open_page('/test/index.html')
+      webpage.context_menu('link=License')
+      webpage.capture_screen(File.join(File.dirname(__FILE__), 'screenshot.png'))
+    end
+
+    it 'should support focus event and fire blur event' do
+      webpage.open_page('/test/index.html')
+      webpage.focus('events')
+      webpage.enter('events', 'value')
+      webpage.value('events').should == 'value'
+      webpage.fire_event('events', 'blur')
+      webpage.should be_alert_present
+      webpage.alert_message.should == 'blurred with value value'
+      webpage.fire_event('events', 'focus')
+#      webpage.focus('events')
+      webpage.value('events').should == 'default'
+    end
+
+    it 'should support key event and check if it is supported' do
+      webpage.open_page('/test/index.httml')
+      webpage.key_down(:shift)
+      webpage.key_up(:shift)
+      [:shift, :meta, :alt, :control].each do |key|
+        key = webpage.key(key)
+        key.down
+        key.up
+      end
+      webpage.key(:alt).down
+
+      Proc.new {webpage.key_up(:command)}.should raise_error(NoKeyError)
+      Proc.new {webpage.key_down(:command)}.should raise_error(NoKeyError)
+    end
+
+    it 'should have speed as attribute' do
+      webpage.speed = 500
+      webpage.speed.should == 500
+    end
+
   end
 end

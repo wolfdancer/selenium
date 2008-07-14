@@ -13,5 +13,6 @@ require 'link'
 require 'locator'
 require 'text_field'
 require 'text_area'
+require 'key'
 
 

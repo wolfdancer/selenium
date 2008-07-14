@@ -3,6 +3,13 @@ $:.unshift File.dirname(__FILE__)
 require 'timeout'
 
 module Selenium
+  # Error that is thrown when a key is not supported
+  class NoKeyError < NameError
+    def initialize(key)
+      super(key)
+    end
+  end
+
   # Class that models a web page with a title
   class WebPage
     attr_reader :browser
@@ -30,6 +37,14 @@ module Selenium
 
     def html
       @browser.get_html_source
+    end
+
+    def speed=(value)
+      @browser.set_speed(value)
+    end
+
+    def speed
+      @browser.get_speed.to_i
     end
 
     def wait_for_load
@@ -107,6 +122,10 @@ module Selenium
       Button.new(self, element_locator(how, what))
     end
 
+    def key(key)
+      Key.new(self, key)
+    end
+
     def element_present?(locator)
       @browser.is_element_present(locator)
     end
@@ -139,6 +158,34 @@ module Selenium
 
     def alert_message
       @browser.get_alert
+    end
+
+    def context_menu(locator)
+      @browser.context_menu(locator)
+    end
+
+    def fire_event(locator, event)
+      @browser.fire_event(locator, event)
+    end
+
+    def key_down(key)
+      message = "#{key}_key_down"
+      raise NoKeyError.new(key.to_s) unless @browser.respond_to? message
+      @browser.send message
+    end
+
+    def key_up(key)
+      message = "#{key}_key_up"
+      raise NoKeyError.new(key.to_s) unless @browser.respond_to? message
+      @browser.send message
+    end
+
+    def key_press(locator, key)
+      @browser.key_press(locator, key)
+    end
+
+    def focus(locator)
+      @browser.focus(locator)
     end
 
     def upload(locator, file)
