@@ -40,6 +40,26 @@ module Selenium
       webpage.link(:href, 'a.html').locator.should == "xpath=//a[@href='a.html']"
     end
 
+    it 'should convert how and what to locator for selenium driver' do
+      webpage.element_locator('name').should == 'name'
+      webpage.element_locator(:id, 'id').should == 'id=id'
+      webpage.element_locator(:name, 'name').should == 'name=name'
+      webpage.element_locator(:xpath, '//a').should == 'xpath=//a'
+    end
+
+    it 'should support elements by passing in name directly' do
+      webpage.open_page('/test/index.html')
+      text_field = webpage.text_field('doubleclick')
+      text_field.locator.should == 'doubleclick'
+      text_field.enter('webpage')
+      webpage.text_area('doubleclick').enter('webpage')
+      webpage.text_area('doubleclick').double_click
+      webpage.should be_alert_present
+      webpage.alert_message.should == 'double clicked with value webpage'
+      webpage.text_area('doubleclick').key_press('a')
+      webpage.text_area('doubleclick').value.should == 'webpagea'
+    end
+
     it 'should support double click and key press' do
       webpage.open_page('/test/index.html')
       webpage.enter('doubleclick', 'webpage')

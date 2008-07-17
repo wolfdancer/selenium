@@ -95,6 +95,7 @@ module Selenium
           raise "couldn't understand how to build locator using #{how} with #{what}"
         end
       end
+      locator
     end
 
     def file_upload(how, what)
