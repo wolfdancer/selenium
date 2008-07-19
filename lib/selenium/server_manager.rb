@@ -1,5 +1,3 @@
-
-
 module Selenium
 
 require 'server'

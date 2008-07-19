@@ -1,8 +1,4 @@
-require 'spec'
-
-$:.unshift File.join(File.dirname(__FILE__), '..', '..')
-
-require 'lib/selenium'
+require File.join(File.dirname(__FILE__), "spec_helper")
 
 module Selenium
   describe WebPage do
@@ -21,7 +17,7 @@ module Selenium
     end
 
     def webpage
-      @@webpage = @server.open('*chrome D:\Program Files\Mozilla Firefox2\firefox.exe', 'http://localhost:2000/') unless @@webpage
+      @@webpage = @server.open(BROWSER, 'http://localhost:2000/') unless @@webpage
       @@webpage
     end
 

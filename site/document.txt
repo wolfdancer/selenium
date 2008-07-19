@@ -16,7 +16,7 @@ h1. Testing with Selenium
 h2. Action Based Testing
 
 This is provided by "Selenium":http://www.openqa.org/selenium-rc/ project itself.  The "SeleniumDriver":rdoc/classes/Selenium/SeleniumDriver.html is bundled
-with Selenium ruby gem.  There is a more Ruby friendly class "WebPage":rdoc/classes/Selenium/WebPage.html that you can check out as well. 
+with Selenium ruby gem.  There is a more Ruby friendly class "WebPage":rdoc/classes/Selenium/WebPage.html that you can check out as well.
 
 h2. Object Based Testing
 

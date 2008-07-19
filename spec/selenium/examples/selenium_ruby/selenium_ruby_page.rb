@@ -1,8 +1,3 @@
-$:.unshift File.dirname(__FILE__)
-
-#require '../../../../lib/selenium'
-require 'menu'
-
 module Selenium
   class SeleniumRubyPage < WebPage
     attr_reader :menu
@@ -11,8 +6,12 @@ module Selenium
       super(browser, expected_title)
     end
 
+    def assert_page
+      title.should == @expected_title
+    end
+
     def menu
-      Menu.new(self)
+      Menu.new(@browser)
     end
   end
 end

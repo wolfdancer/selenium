@@ -4,5 +4,7 @@ require 'spec'
 require 'lib/selenium'
 
 module Selenium
-  BROWSER = '*chrome D:\Program Files\Mozilla Firefox2\firefox.exe'
+  BROWSER = RUBY_PLATFORM =~ /^rwin/ ?
+    '*chrome D:\Program Files\Mozilla Firefox2\firefox.exe' :
+    '*chrome /usr/lib/firefox-2/firefox'
 end

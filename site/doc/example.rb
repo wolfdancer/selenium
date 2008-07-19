@@ -41,7 +41,11 @@ class CommentCheckBox
 
   def click
     old_value = selected
+<<<<<<< HEAD:site/doc/example.rb
     browser.wait_for_condition(@comment_span.script_check_visible((not old_value)), 5000)
+=======
+    browser.wait_for_condition(@comment_span.script_check_visible(not old_value), 5000)
+>>>>>>> a3598e23fd3d746137b3a82b575d68ed060b1d4b:site/doc/example.rb
   end
 end
 # END check

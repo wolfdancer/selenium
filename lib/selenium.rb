@@ -1,17 +1,16 @@
-$:.unshift File.join(File.dirname(__FILE__), 'selenium')
+require 'selenium/openqa/selenium'
 
-require 'openqa/selenium'
+require 'selenium/selenium_server'
+require 'selenium/web_page'
+require 'selenium/server'
 
-require 'selenium_server'
-require 'web_page'
-require 'server'
+require 'selenium/alert'
+require 'selenium/html_element'
 
-require 'alert'
-require 'html_element'
-require 'button'
-require 'link'
-require 'text_field'
-require 'text_area'
-require 'key'
+require 'selenium/button'
+require 'selenium/link'
+require 'selenium/locator'
+require 'selenium/text_field'
 
-
+require 'selenium/wait_for'
+require 'selenium/selenium_driver'

@@ -1,9 +1,3 @@
-$:.unshift File.dirname(__FILE__)
-
-require 'home_page'
-require 'directory_listing_page'
-require 'license_page'
-
 module Selenium
   class Menu
     attr_reader :webpage

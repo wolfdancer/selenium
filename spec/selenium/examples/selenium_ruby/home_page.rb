@@ -1,7 +1,3 @@
-$:.unshift File.dirname(__FILE__)
-require 'menu'
-require 'selenium_ruby_page'
-
 module Selenium
 class HomePage < SeleniumRubyPage
 

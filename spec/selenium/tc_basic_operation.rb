@@ -1,10 +1,4 @@
-require 'spec'
-
-$:.unshift File.join(File.dirname(__FILE__), '..', '..')
-
-require 'lib/selenium'
-require 'spec/selenium/examples/selenium_ruby/home_page'
-require 'spec/selenium/examples/selenium_ruby/download_page'
+require File.join(File.dirname(__FILE__), "spec_helper")
 
 module Selenium
 describe 'basic operation with selenium' do
@@ -22,16 +16,6 @@ describe 'basic operation with selenium' do
   end
   
   it 'should click through menus' do
-#TEST START
-    page = HomePage.new(@browser)
-    page.menu.download_link.click_wait
-    page = DownloadPage.new(@browser)
-    page.should be_present
-    page = page.menu.home_link.go
-    page.link(:text, 'index.txt').click_wait
-    page = HomePage.new(@browser)
-    page.menu.license_link.go
-#TEST END
   end
 end
 end

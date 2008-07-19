@@ -1,9 +1,17 @@
-$:.unshift File.dirname(__FILE__)
-
 module Selenium
-  class DirectoryListingPage < WebPage
-    def initialize(browser)
-      super(browser, 'Index of /')
-    end
+class DirectoryListingPage
+  attr_reader :browser
+
+  def initialize(browser)
+    @browser = browser
   end
+
+  def link_to_entry(text)
+    Link.new(browser, "link=#{text}")
+  end
+
+  def assert_page
+    @browser.get_title.should == 'Index of /'
+  end
+end
 end
