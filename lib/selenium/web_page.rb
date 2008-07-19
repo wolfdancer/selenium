@@ -104,7 +104,6 @@ module Selenium
 
     def open_page(url)
       @browser.open(url)
-      wait_for_load
     end
 
     def close

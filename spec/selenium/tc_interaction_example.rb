@@ -5,7 +5,7 @@ context 'Test goole search' do
     port = 4567
     @server = Selenium::Server.on_port(port)
     @server.start
-    @page = @server.open(BROWSER, 'http://www.google.com')
+    @page = @server.open(Selenium::BROWSER, 'http://www.google.com')
   end
 
   after do
@@ -13,7 +13,7 @@ context 'Test goole search' do
     @server.stop
   end
 
-  specify'searh hello world with google using interaction based script' do
+  specify 'search hello world with google using interaction based script' do
     @page.open_page("/")
     @page.title.should == 'Google'
     @page.enter("q", "hello world")

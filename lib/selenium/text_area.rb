@@ -1,15 +1,11 @@
 module Selenium
-class TextArea < HtmlElement
-  def initialize(webpage, locator)
-    super(webpage, locator)
-  end
+  class TextArea < HtmlElement
+    def enter(value)
+      @webpage.enter(@locator, value)
+    end
 
-  def enter(value)
-    @webpage.enter(@locator, value)
+    def value
+      @webpage.value(@locator)
+    end
   end
-
-  def value
-    @webpage.value(@locator)
-  end
-end
 end
