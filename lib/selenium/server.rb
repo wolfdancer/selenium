@@ -61,9 +61,7 @@ class Server
     browser = driver(browser_start_command, URI::Generic::new(url.scheme, url.userinfo, url.host, url.port, nil, nil, nil, nil, nil))
     browser.start
     browser.open(url.request_uri)
-    page = WebPage.new(browser)
-    page.wait_for_load
-    page
+    WebPage.new(browser)
   end
 
   # Starts the server, does not return until the server shuts down

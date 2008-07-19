@@ -17,7 +17,6 @@ module Selenium
     end
 
     before do
-#      @page = @server.open('*iexplore', 'http://www.rubyforge.org/projects/selenium')
       @page = @server.open(BROWSER, 'http://www.rubyforge.org/projects/selenium')
     end
 

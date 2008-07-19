@@ -29,7 +29,7 @@ context 'Test goole search' do
   end
 
   before(:each) do
-    @webpage = @server.open(BROWSER, 'http://www.google.com/webhp')
+    @webpage = @server.open(Selenium::BROWSER, 'http://www.google.com/webhp')
   end
 
   after(:each) do
