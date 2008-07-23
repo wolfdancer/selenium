@@ -1,7 +1,3 @@
-$:.unshift File.join(File.dirname(__FILE__))
-
-require 'auto_it'
-
 class AutoItWindow
   def initialize(autoit, title, text=nil)
     @autoit = autoit

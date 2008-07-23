@@ -1,5 +1,3 @@
-require 'uri'
-
 module Selenium
 # The class that can manages the server driver classes.
 # This class is originally copied from the BuildMaster project.

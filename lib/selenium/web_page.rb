@@ -1,7 +1,3 @@
-$:.unshift File.dirname(__FILE__)
-
-require 'timeout'
-
 module Selenium
   # Error that is thrown when a key is not supported
   class NoKeyError < NameError

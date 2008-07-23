@@ -7,5 +7,8 @@ module Selenium
     def value
       @webpage.value(@locator)
     end
+
+    puts "#{__FILE__}:#{__LINE__}"
+    p instance_methods.include?("double_click")
   end
 end

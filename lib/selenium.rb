@@ -1,7 +1,11 @@
+require "timeout"
+require 'uri'
+require 'net/http'
 require 'selenium/openqa/selenium'
 
 require 'selenium/selenium_server'
 require 'selenium/web_page'
+require 'selenium/server'
 require 'selenium/server'
 
 require 'selenium/alert'

@@ -1,5 +1,3 @@
-require 'net/http'
-
 module Selenium
 
   # Selenium server driver that provides API to start/stop server and check if

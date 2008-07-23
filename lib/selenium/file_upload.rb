@@ -1,7 +1,3 @@
-$:.unshift File.dirname(__FILE__)
-
-require 'auto_it_window'
-
 module Selenium
   class FileUpload
     def initialize(webpage, locator)
