@@ -185,12 +185,7 @@ module Selenium
     end
 
     def upload(locator, file)
-#      @browser.attach_file(locator, file)
-      @browser.click(locator)
-      require 'auto_it'
-      autoit = AutoIt.load
-      window = AutoItWindow.wait_for(autoit, 'File Upload')
-      puts window
+      @browser.attach_file(locator, file)
     end
 
     def capture_page(file)
