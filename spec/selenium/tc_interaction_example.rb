@@ -13,6 +13,7 @@ context 'Test goole search' do
     @server.stop
   end
 
+#START INTERACTION
   specify 'search hello world with google using interaction based script' do
     @page.open_page("/")
     @page.title.should == 'Google'
@@ -21,6 +22,6 @@ context 'Test goole search' do
     @page.wait_for_load
     @page.title.should == 'hello world - Google Search'
   end
+#END INTERACTION
 
 end
-#END INTERACTION
