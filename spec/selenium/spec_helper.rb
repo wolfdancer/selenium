@@ -8,7 +8,7 @@ require "mongrel"
 require "#{dir}/examples/selenium_ruby"
 
 module Selenium
-  BROWSER = RUBY_PLATFORM =~ /^rwin/ ?
+  BROWSER = RUBY_PLATFORM =~ /[^r]win/ ?
     '*chrome D:\Program Files\Mozilla Firefox2\firefox.exe' :
     '*firefox'
 end

@@ -4,6 +4,9 @@ module Selenium
   # server is running.
   # NOTE: The start does not return until the server shuts down.
   class SeleniumServer
+    def SeleniumServer::on_windows?
+      RUBY_PLATFORM =~ /[^r]win/  
+    end
 
     def SeleniumServer::run(argv, vmparameter='')
       jar_file = SeleniumServer.jar_file
@@ -27,7 +30,11 @@ module Selenium
 
     private
     def SeleniumServer::jar_file
-      File.join(File.dirname(__FILE__), 'openqa', 'selenium-server.jar.txt')
+      file = File.join(File.dirname(__FILE__), 'openqa', 'selenium-server.jar.txt')
+      if on_windows # In cygwin the path would come out with '/' but the java executable would expect windows format
+        file.gsub!('/', '\\')
+      end
+      file
     end
 
     public

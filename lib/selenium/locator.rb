@@ -1,4 +1,5 @@
 module Selenium
+  # This is deprecated in favor of watir style locator
   module Locator
     def by_name(name)
       name
