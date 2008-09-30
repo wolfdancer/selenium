@@ -4,7 +4,7 @@ module Selenium
   describe WebPage do
     before(:all) do
       @server = Server.new(2344)
-      @server.start
+      @server.start  
       @@webpage = nil
     end
 

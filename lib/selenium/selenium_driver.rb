@@ -1,20 +1,18 @@
 module Selenium
-  open_qa_selenium_driver = SeleniumDriver
-  remove_const(:SeleniumDriver)
-  SeleniumDriver = Class.new(open_qa_selenium_driver) do
+  SeleniumDriver = Class.new(Selenium::Client::Driver) do
     include WaitFor
     attr_reader :server_host, :server_port
 
     def browser_start_command
-      @browserStartCommand
+      @browser_string
     end
 
     def browser_url
-      @browserURL
+      @browser_url
     end
 
     def timeout_in_milliseconds
-      @timeout
+      @timeout * 1000
     end
 
     def insert_javascript_file(uri)

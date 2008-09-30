@@ -1,7 +1,8 @@
+require "rubygems"
 require "timeout"
 require 'uri'
 require 'net/http'
-require 'selenium/openqa/selenium'
+require 'selenium/client'
 
 require 'selenium/selenium_server'
 require 'selenium/web_page'

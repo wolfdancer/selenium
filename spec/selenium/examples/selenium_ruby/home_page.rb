@@ -1,9 +1,9 @@
 module Selenium
-class HomePage < SeleniumRubyPage
+	class HomePage < SeleniumRubyPage
 
-  def initialize(browser)
-    super(browser, 'Selenium Ruby - Home')
-  end
+	  def initialize(browser)
+	    super(browser, 'Selenium Ruby - Home')
+	  end
   
-end
+	end
 end

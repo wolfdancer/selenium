@@ -30,6 +30,7 @@ SPEC = Gem::Specification.new do |spec|
   spec.homepage = 'http://selenium.rubyforge.org/'
   spec.platform = Gem::Platform::RUBY
   spec.summary = 'A project that wraps selenium API into object-oriented testing style and packages it into a RubyGem.'
+  spec.add_dependency('selenium-client', '>= 1.2.3')
   spec.files = FileList["{bin,docs,lib,spec}/**/*"].exclude("rdoc").to_a
   spec.require_path = 'lib'
   spec.autorequire = 'selenium'
