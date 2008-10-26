@@ -1,18 +1,9 @@
 require "rubygems"
 require "spec"
 
-$:.unshift File.join(File.dirname(__FILE__), '..', '..', 'lib')
-
-require 'selenium'
+require File.dirname(__FILE__) + '/../../lib/selenium'
 
 describe 'Time Out Control' do
-
-  before(:each) do
-  end
-
-  after(:each) do
-  end
-
 
   it "should honor the time out argument" do
      link_list=["http://www.myantel.net.mm",
@@ -29,7 +20,7 @@ describe 'Time Out Control' do
 
      ]
 
-     selenium=Selenium::SeleniumDriver.new("localhost",4444,"*chrome", link_list.first, 600000)
+     selenium=Selenium::Client::Driver.new("localhost", 4444,"*chrome", link_list.first, 600000)
      selenium.start
      selenium.set_timeout(600000)
      link_list.each {|url| selenium.open(url) }

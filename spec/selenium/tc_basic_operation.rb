@@ -1,4 +1,4 @@
-require File.join(File.dirname(__FILE__), "spec_helper")
+require File.dirname(__FILE__) + '/spec_helper'
 
 module Selenium
 describe 'basic operation with selenium' do

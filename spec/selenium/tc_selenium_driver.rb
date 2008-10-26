@@ -25,10 +25,6 @@ module Selenium
         driver.timeout_in_milliseconds.should == 240000
       end
     
-      it "should start" do
-        mock(driver).start_new_browser_session
-        driver.start
-      end
     end
     
     describe "#inner_html_js" do
@@ -66,16 +62,16 @@ module Selenium
         driver.type "id=foobar", "The Text"
       end
       
-      # it "fails when element is not present" do
-      #   mock(driver).boolean_command("isElementPresent", ["id=foobar"]).once do
-      #     result(false)
-      #   end
-      #   dont_allow(driver).remote_control_command("type", ["id=foobar", "The Text"])
-      # 
-      #   proc {
-      #     driver.type "id=foobar", "The Text"
-      #   }.should raise_error
-      # end
+       it "fails when element is not present" do
+         mock(driver).boolean_command("isElementPresent", ["id=foobar"]).once do
+           result(false)
+         end
+         dont_allow(driver).remote_control_command("type", ["id=foobar", "The Text"])
+
+         proc {
+           driver.type "id=foobar", "The Text"
+         }.should raise_error
+       end
     end
       
     describe "#click" do
@@ -113,16 +109,16 @@ module Selenium
         driver.select "id=foobar", "value=3"
       end
       
-      # it "fails when element is not present" do
-      #   mock(driver).boolean_command("isElementPresent", ["id=foobar"]).once do
-      #     result false
-      #   end
-      #   dont_allow(driver).remote_control_command("select", ["id=foobar", "value=3"])
-      # 
-      #   proc {
-      #     driver.select "id=foobar", "value=3"
-      #   }.should raise_error
-      # end
+       it "fails when element is not present" do
+         mock(driver).boolean_command("isElementPresent", ["id=foobar"]).once do
+           result false
+         end
+         dont_allow(driver).remote_control_command("select", ["id=foobar", "value=3"])
+
+         proc {
+           driver.select "id=foobar", "value=3"
+         }.should raise_error
+       end
     end
   
     describe "#click" do

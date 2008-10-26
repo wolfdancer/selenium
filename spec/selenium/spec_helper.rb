@@ -1,11 +1,11 @@
 require "rubygems"
-dir = File.dirname(__FILE__)
-$:.unshift File.expand_path(File.join(dir, '..', '..', 'lib'))
-require "selenium"
-
 require "spec"
 require "mongrel"
-require "#{dir}/examples/selenium_ruby"
+dir = File.dirname(__FILE__)
+
+require dir + '/../../lib/selenium'
+
+require dir + "/examples/selenium_ruby"
 
 module Selenium
   BROWSER = RUBY_PLATFORM =~ /[^r]win/ ?
@@ -42,7 +42,8 @@ describe "Selenium", :shared => true do
   end
 end
 
-$test_app_server = Mongrel::HttpServer.new("0.0.0.0", "2000")
+puts 'starting'
+$test_app_server = Mongrel::HttpServer.new('0.0.0.0', 2000)
 puts File.expand_path(File.join(dir, '..', '..', 'site'))
 $test_app_server.register("/", Mongrel::DirHandler.new(File.expand_path(File.join(dir, '..', '..', 'site'))))
 $test_app_server.run

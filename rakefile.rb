@@ -1,4 +1,4 @@
-$:.unshift File.join(File.dirname(__FILE__), 'lib')
+file = File.join(File.dirname(__FILE__), 'lib')
 
 require 'rubygems'
 Gem::manage_gems
@@ -9,7 +9,7 @@ require 'rake/rdoctask'
 require 'rcov/rcovtask'
 require 'specs'
 require 'buildmaster/project/server_manager'
-require 'selenium'
+require file + '/selenium'
 
 rcov_dir = SITE_SPEC.output_dir.dir('rcov')
 rspec_dir = SITE_SPEC.output_dir.dir('rspec')
