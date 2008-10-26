@@ -1,5 +1,6 @@
 *.iml
 *.ipr
 *.iws
+*.gem
 spec/selenium/screenshot.png
 build

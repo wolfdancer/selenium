@@ -25,7 +25,7 @@ Spec::Rake::SpecTask.new(:coverage) do |t|
   t.rcov = true
   t.rcov_dir = rcov_dir.path
   t.spec_opts = ["--format", "html:#{rspec_dir.file('index.html').path}", "--diff"]
-  t.fail_on_error = true
+  t.fail_on_error = false
 end
 
 Rake::RDocTask.new(:rdoc) do |rdoc|
