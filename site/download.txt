@@ -5,6 +5,10 @@ h2. RubyGem <template:text property="release"/>
 
 The easiest way to install the published builds is using the following command through "RubyGem":http://rubygems.org/:
 
+<div class="code">gem install Selenium</div>
+
+Please note that at this point this command with lower case 'selenium' will install Selenium on Rails (SOR), which is a different gem.
+
 <div class="code">gem install selenium</div>
 
 h2. RubyForge
