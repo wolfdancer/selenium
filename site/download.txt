@@ -7,9 +7,8 @@ The easiest way to install the published builds is using the following command t
 
 <div class="code">gem install Selenium</div>
 
-Please note that at this point this command with lower case 'selenium' will install Selenium on Rails (SOR), which is a different gem.
-
-<div class="code">gem install selenium</div>
+<p/>
+(Please note that at this point the command "<code>gem install selenium</code>" with lower case 'selenium' will install Selenium on Rails (SOR), which is a different gem.
 
 h2. RubyForge
 
