@@ -23,7 +23,7 @@ module Selenium
 
     it 'should have meaningful to_s support' do
       webpage = WebPage.new(SeleniumDriver.new('localhost', 2222, '*chrome', 'http://www.example.com', 60000), 'expected title')
-      webpage.to_s.should == 'Selenium::WebPage(\'expected title\') - SeleniumDriver'
+      webpage.to_s.should == 'Selenium::WebPage(\'expected title\')'
     end
 
     it 'should create link based on text' do

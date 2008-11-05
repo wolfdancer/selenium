@@ -197,7 +197,7 @@ module Selenium
     end
 
     def to_s
-      "#{self.class}('#{@expected_title}') - #{browser.to_s}"
+      "#{self.class}('#{@expected_title}')"
     end
 
   end
