@@ -22,7 +22,7 @@ module Selenium
           puts "server not running on #{server.port_number}"
         end
       else
-        command = "java #{vmparameter} -jar #{jar_file} #{argv.join(' ')}"
+        command = "java #{vmparameter} -jar \"#{jar_file}\" #{argv.join(' ')}"
         puts command
         system(command)
       end
