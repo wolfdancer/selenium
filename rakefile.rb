@@ -26,7 +26,10 @@ Spec::Rake::SpecTask.new(:coverage) do |t|
   t.spec_files = FileList['spec/**/tc_*.rb']
   t.rcov = true
   t.rcov_dir = rcov_dir.path
-  t.spec_opts = ["--format", "html:#{rspec_dir.file('index.html').path}", "--diff"]
+  t.spec_opts = [ "--colour",
+                  "--format", "progress", 
+                  "--format", "html:#{rspec_dir.file('index.html').path}", 
+                  "--diff"]
   t.fail_on_error = false
 end
 

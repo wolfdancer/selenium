@@ -1,12 +1,10 @@
 require File.dirname(__FILE__) + '/spec_helper'
 
-module Selenium
 describe 'basic operation with selenium' do
   before do
-    port = 4567
-    @server = Selenium::Server.on_port(port)
+    @server = Selenium::Server.on_port(4567)
     @server.start
-    @webpage = @server.open(BROWSER, 'http://localhost:2000/test/index.html')
+    @webpage = @server.open(Selenium::BROWSER, 'http://localhost:2000/test/index.html')
     @browser = @webpage.browser
   end
 
@@ -18,5 +16,4 @@ describe 'basic operation with selenium' do
   
   it 'should click through menus' do
   end
-end
 end

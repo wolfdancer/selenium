@@ -1,9 +1,9 @@
 require File.join(File.dirname(__FILE__), "spec_helper")
 
-context 'Test goole search' do
+context 'Google Search Interaction' do
+
   before do
-    port = 4567
-    @server = Selenium::Server.on_port(port)
+    @server = Selenium::Server.on_port(4567)
     @server.start
     @page = @server.open(Selenium::BROWSER, 'http://www.google.com')
   end
@@ -13,8 +13,7 @@ context 'Test goole search' do
     @server.stop
   end
 
-#START INTERACTION
-  specify 'search hello world with google using interaction based script' do
+  specify 'Search hello world with google using interaction based script' do
     @page.open_page("/")
     @page.title.should == 'Google'
     @page.enter("q", "hello world")
@@ -22,6 +21,5 @@ context 'Test goole search' do
     @page.wait_for_load
     @page.title.should == 'hello world - Google Search'
   end
-#END INTERACTION
 
 end

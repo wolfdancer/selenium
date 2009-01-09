@@ -20,7 +20,7 @@ describe 'Time Out Control' do
 
      ]
 
-     selenium=Selenium::Client::Driver.new("localhost", 4444,"*chrome", link_list.first, 600000)
+     selenium = Selenium::Client::Driver.new("localhost", 4444,"*chrome", link_list.first, 600000)
      selenium.start
      selenium.set_timeout(600000)
      link_list.each {|url| selenium.open(url) }

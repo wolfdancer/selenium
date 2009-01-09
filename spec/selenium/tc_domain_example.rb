@@ -1,30 +1,29 @@
 require File.join(File.dirname(__FILE__), "spec_helper")
 
-#START GOOGLEHOME
-class GoogleHomPage < Selenium::WebPage
-  def initialize(browser)
-    super(browser, 'Google')
+context 'Google Search' do
+
+  class GoogleHomePage < Selenium::WebPage
+
+    def initialize(browser)
+      super browser, 'Google'
+    end
+
+    def title
+      browser.get_title
+    end
+
+    def search_field
+      text_field :name, 'q'
+    end
+
+    def search_button
+      button :name, 'btnG'
+    end
+
   end
-
-  def title
-    browser.get_title
-  end
-
-  def search_field
-    text_field(:name, 'q')
-  end
-
-  def search_button
-    button(:name, 'btnG')
-  end
-
-end
-#END GOOGLEHOME
-
-context 'Test goole search' do
+  
   before(:all) do
-    port = 4567
-    @server = Selenium::Server.on_port(port)
+    @server = Selenium::Server.on_port(4567)
     @server.start
   end
 
@@ -41,15 +40,13 @@ context 'Test goole search' do
     @server.stop
   end
 
-#START DOMAIN
-  specify'searh hello world with google using docmain based script' do
-    page = GoogleHomPage.new(@webpage.browser)
+  specify'Search hello world with Google using domain based script' do
+    page = GoogleHomePage.new(@webpage.browser)
     page.should be_present
-    page.search_field.enter('hello world')
+    page.search_field.enter 'hello world'
     page.search_button.click_wait
     page.title.should == 'hello world - Google Search'
     page.search_field.value.should == 'hello world'
   end
-#END DOMAIN
 
 end
