@@ -8,11 +8,13 @@ require 'rake/gempackagetask'
 require 'rake/rdoctask'
 require 'rcov/rcovtask'
 require 'specs'
+require 'buildmaster/cotta'
 require 'buildmaster/project/server_manager'
 require file + '/selenium'
 
 rcov_dir = SITE_SPEC.output_dir.dir('rcov')
 rspec_dir = SITE_SPEC.output_dir.dir('rspec')
+current_dir =
 
 task :init do
   rcov_dir.mkdirs
