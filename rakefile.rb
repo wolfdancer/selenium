@@ -7,7 +7,9 @@ require 'spec/rake/spectask'
 require 'rake/gempackagetask'
 require 'rake/rdoctask'
 require 'rcov/rcovtask'
+gem 'BuildMaster', '>=1.1.12'
 require 'specs'
+gem 'rr'
 require 'buildmaster/cotta'
 require 'buildmaster/project/server_manager'
 require file + '/selenium'
@@ -21,12 +23,15 @@ task :init do
   rspec_dir.mkdirs
 end
 
-#desc "Run all specifications"
+desc "Run all specifications providing test coverage metrics"
 Spec::Rake::SpecTask.new(:coverage) do |t|
   t.spec_files = FileList['spec/**/tc_*.rb']
   t.rcov = true
   t.rcov_dir = rcov_dir.path
-  t.spec_opts = ["--format", "html:#{rspec_dir.file('index.html').path}", "--diff"]
+  t.spec_opts = [ "--colour",
+                  "--format", "progress", 
+                  "--format", "html:#{rspec_dir.file('index.html').path}", 
+                  "--diff"]
   t.fail_on_error = false
 end
 

@@ -2,6 +2,7 @@ require "rubygems"
 require "timeout"
 require 'uri'
 require 'net/http'
+require "forwardable"
 require 'selenium/client'
 
 dir = File.dirname(__FILE__)
