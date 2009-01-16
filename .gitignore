@@ -4,3 +4,4 @@
 *.gem
 spec/selenium/screenshot.png
 build
+.idea
